@@ -1,9 +1,19 @@
-/*body{background:url(images/bg.png) 0 0 repeat;}*/
-.page1{
-	position:relative;
-	width:640px;height:1008px;margin:0 auto;
-	background:red url(images/bg1.png) 0 0 no-repeat;
-	background-size:100% 100%;
+body{font-size:14px;background:#f1f1f1;}
+
+/*.wrapper{
+	width:640px;
+	margin:0 auto;overflow:auto;
+	border:2px solid #333;
+}*/
+/*page1
+----------------------------------------------------------------*/
+.page1{position:relative;
+	width:640px;height:1000px;
+	margin:0 auto;
+	background:#f1f1f1 url(images/bg.png) 0 0 repeat-y;
+}
+.page1 img{
+	position:absolute;left:0;right:0;bottom:10%;
 }
 /*shadow*/
 .circle{
@@ -56,56 +66,58 @@
 	100% 	{background-position:-2286px 0;}
 }
 
-/*text*/
-.text{overflow:hidden;list-style:none;}
-.text span{float:right;display:inline;
+/*slogan*/
+.slogan{
+	position:absolute;top:140px;right:250px;
+	overflow:hidden;list-style:none;}
+.slogan span{float:right;display:inline;
 	margin-left:4px;
 	width:30px;
-	font-size:30px;line-height:30px;font-family:"华文行楷";
-	word-wrap:break-word;word-break:nomal;
+	font-size:30px;line-height:30px;font-family:"楷体";
+	word-wrap:break-word;word-break:normal;
 	opacity:0;
 	color:#2d2d2d;
 }
-.text em{color:#e0342d;}
+.slogan em{color:#e0342d;}
 
-.active .text span{}
-.active .text span:first-child{
+.active .slogan span{}
+.active .slogan span:first-child{
 	-webkit-animation: fadeIn 0.4s linear forwards 2.0s;
 	-ms-animation: fadeIn 0.4s linear forwards 2.0s;
 	animation: fadeIn 0.4s linear forwards 2.0s;}
-.active .text span:nth-child(2){
+.active .slogan span:nth-child(2){
 	-webkit-animation: fadeIn 0.4s linear forwards 2.4s;
 	-ms-animation: fadeIn 0.4s linear forwards 2.4s;
 	animation: fadeIn 0.4s linear forwards 2.4s;}
-.active .text span:nth-child(3){
+.active .slogan span:nth-child(3){
 	-webkit-animation: fadeIn 0.4s linear forwards 2.8s;
 	-ms-animation: fadeIn 0.4s linear forwards 2.8s;
 	animation: fadeIn 0.4s linear forwards 2.8s;}
-.active .text span:nth-child(4){
+.active .slogan span:nth-child(4){
 	-webkit-animation: fadeIn 0.4s linear forwards 3.2s;
 	-ms-animation: fadeIn 0.4s linear forwards 3.2s;
 	animation: fadeIn 0.4s linear forwards 3.2s;}
-.active .text span:nth-child(5){
+.active .slogan span:nth-child(5){
 	-webkit-animation: fadeIn 0.4s linear forwards 3.6s;
 	-ms-animation: fadeIn 0.4s linear forwards 3.6s;
 	animation: fadeIn 0.4s linear forwards 3.6s;}
-.active .text span:nth-child(6){
+.active .slogan span:nth-child(6){
 	-webkit-animation: fadeIn 0.4s linear forwards 4.0s;
 	-ms-animation: fadeIn 0.4s linear forwards 4.0s;
 	animation: fadeIn 0.4s linear forwards 4.0s;}
-.active .text span:nth-child(7){
+.active .slogan span:nth-child(7){
 	-webkit-animation: fadeIn 0.4s linear forwards 4.4s;
 	-ms-animation: fadeIn 0.4s linear forwards 4.4s;
 	animation: fadeIn 0.4s linear forwards 4.4s;}
-.active .text span:nth-child(8){
+.active .slogan span:nth-child(8){
 	-webkit-animation: fadeIn 0.4s linear forwards 4.8s;
 	-ms-animation: fadeIn 0.4s linear forwards 4.8s;
 	animation: fadeIn 0.4s linear forwards 4.8s;}
-.active .text span:nth-child(9){
+.active .slogan span:nth-child(9){
 	-webkit-animation: fadeIn 0.4s linear forwards 5.2s;
 	-ms-animation: fadeIn 0.4s linear forwards 5.2s;
 	animation: fadeIn 0.4s linear forwards 5.2s;}
-.active .text span:nth-child(10){
+.active .slogan span:nth-child(10){
 	-webkit-animation: fadeIn 0.4s linear forwards 5.6s;
 	-ms-animation: fadeIn 0.4s linear forwards 5.6s;
 	animation: fadeIn 0.4s linear forwards 5.6s;}
@@ -130,7 +142,7 @@
 	position:absolute;left:50%;margin-left:-169px;
 	width:339px;height:60px;
 	text-align:center;
-	line-height:60px;font-size:50px;font-family:"华文行楷";color:#dd7b07;font-weight:normal;
+	line-height:60px;font-size:50px;font-family:"楷体";color:#dd7b07;font-weight:normal;
 	opacity:0;
 }
 .h5-info b{
@@ -189,8 +201,8 @@
 .logo h3{
 	width: 100%;
 	font-size: 120px;line-height:120px;
-	font-family: '华文行楷', Arial, sans-serif;
-	text-transform: uppercase;
+	font-family: '楷体', Arial, sans-serif;
+	text-transform: uppercase;font-weight:bold;
 	text-shadow: 3px 3px 15px rgba(95,85,127,0.4);
 	-webkit-transform-style: preserve-3d;
 	transform-style: preserve-3d;
@@ -324,3 +336,64 @@
 	0% { opacity: 0;  }
 	100% { opacity: 1;}
 }
+
+
+
+
+/*@media (max-width: 570px) {
+	
+}*/
+
+
+/*page2
+----------------------------------------------------------------*/
+.page2{
+	width:640px;
+	margin:0 auto;
+	background:url(images/bg.png) 0 0 repeat-y;}
+/*text*/
+.text{
+	padding:0 10px;
+	overflow:hidden;list-style:none;
+}
+.text em,
+.text strong,
+.text span{float:right;display:inline;
+	margin-left:4px;padding-top:5px;
+	width:30px;
+	font-size:30px;line-height:30px;font-family:"楷体";
+	word-wrap:break-word;word-break:normal;
+	color:#2d2d2d;
+}
+.text em,
+.text strong{
+	width:50px;padding-top:0;margin-left:10px;
+	font-size:50px;line-height:50px;font-family:"楷体";
+}
+.text em{color:#bc0101;}
+.text b{position:relative;
+	display:block;margin-top:10px;
+	width:50px;height:50px;
+	background:url(images/teamlogobg.png) 0 0 no-repeat;
+	border-radius:5px;
+}
+.text img{width:100%;height:100%;}
+.text b:after{position:absolute;
+	display:block;
+	content:' ';
+	top:-5px;left:-5px;right:-5px;bottom:-5px;
+	background:url(images/team.png) 0 0 no-repeat;
+}
+/*p2-bg*/
+
+.p2-bg{display:block;width:100%;}
+
+/*sun*/
+.p2-sun{display:block;width:120px;height:120px;}
+
+/*page3
+----------------------------------------------------------------*/
+.page3{
+	width:640px;
+	margin:0 auto;
+	background:url(images/bg.png) 0 0 repeat-y;}

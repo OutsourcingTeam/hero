@@ -3,18 +3,22 @@
 <head>
     <meta charset="utf-8">
 	<title>网站开发</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+
 	<link rel="stylesheet" href="css/reset.css" />
     <link rel="stylesheet" href="css/style.css" />
 	
 </head>
 <body>
-    <div class="page1" id="page1">
+
+    <section class="page1" id="page1">
+        <img src="images/1.png" />
         <div class="circle"></div>
         <div class="logo">
             <h3><span>英</span><span>雄</span><span>榜</span></h3>
         </div>
         <div class="h5-logo"></div>
-        <p class="text" style="position:absolute;top:140px;right:250px;">
+        <p class="slogan">
             <span>玉皇大帝“张小龙”放出</span>
             <span>微信之后，</span>
             <span>H5成为炙手可热营销法宝</span>
@@ -25,25 +29,88 @@
             <span>分为<em>定制</em>和<em>工具</em></span>
             <span>两大派系</span>
         </p>
-
         <div class="h5-info h5-info01">定制型<b></b></div>
         <div class="h5-info h5-info02">工具型<b></b></div>
-    </div>
+    </section>
 
-    <div class="page2">
+    <br /><br /><br /><br />
 
-    </div>
+    <section class="page2 active">
+        <p class="text">
+            <em>定制</em>
+            <span>以高质量的精品画面打动用户</span>
+            <span>缺陷是价格高昂</span>
+            <span>制作时间周期长</span>
+        </p>
+        <p class="text">
+            <strong>团队名称<b><img src="images/teamelogo.png" /></b></strong>
+            <span>价格参考：10w起</span>
+            <span>案例综述：不详</span>
+            <span>特点：整合营销巨擘，以外包为主</span>
+            <span>团队人数：10人以上</span>
+            <span>成名之作</span>
+            <span>斯巴鲁</span>
+        </p>
+        <img class="p2-bg" src="images/p2-1.png" />
+        <img class="p2-bg" src="images/p2-2.png" />
+        <img class="p2-sun" src="images/sun.png" />
+        <img class="flower" src="images/flower.png" />
+        <img class="bird" src="images/bird.png" />
+    </section>
 
-    <div class="page3">
+    <br /><br /><br /><br />
 
-    </div>
+    <section class="page3">
+        <p class="text">
+            <em>工具型</em>
+            <span>以批量化模板自动化创建H5的</span>
+            <span>工具而闻名于世</span>
+            <span>其特点是量大、便宜、速度快</span>
+        </p>
+        <p class="text">
+            <strong>团队名称<b><img src="images/teamelogo.png" /></b></strong>
+            <span>价格参考：10w起</span>
+            <span>案例综述：不详</span>
+            <span>特点：整合营销巨擘，以外包为主</span>
+            <span>团队人数：10人以上</span>
+            <span>成名之作</span>
+            <span>斯巴鲁</span>
+        </p>
+    </section>
 
+</div>
 
 <script type="text/javascript" src="js/jquery.min.js"></script>
 <script type="text/javascript">
     setTimeout(function(){
         $('#page1').addClass('active');
-    },1000);
+    },1000)
+
+    
+    $(window).scroll(function(){
+        var sT=$(this).scrollTop();
+        var t1=50,t2=200;
+        var y1=0,y2=1600;
+        var y=t1+(t2-t1)*(y2-sT)/(y2-y1);
+        var middle=y1+(y2-y1)/2;
+        var o;
+        if(sT<middle && sT>y1){
+            o=(sT-y1)/((y2-y1)/2);
+        }else if(sT>middle && sT<y2){
+            o=(y2-sT)/((y2-y1)/2);
+        }else if(sT==middle){
+            o=1;
+        }else{
+            o=0
+        }
+        console.log(sT,y,o);
+        $('#slide1').css({'top':y,'opacity':o});
+    });
+
+
+
+
+
 </script>
 
 </body>
