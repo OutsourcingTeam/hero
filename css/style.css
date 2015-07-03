@@ -133,9 +133,23 @@ body{font-size:14px;background:#f1f1f1;}
 }
 .active .h5-logo{opacity:1;}
 .active .h5-logo {
-	-webkit-animation: move2 0.4s linear backwards 1.6s;
-	-ms-animation: move2 0.4s linear backwards 1.6s;
-	animation: move2 0.4s linear backwards 1.6s;
+	-webkit-animation: logomove 0.4s linear backwards 1.6s;
+	-ms-animation: logomove 0.4s linear backwards 1.6s;
+	animation: logomove 0.4s linear backwards 1.6s;
+}
+
+/* first letter*/
+@-webkit-keyframes logomove{
+	0% { opacity: 0; -webkit-transform: scale(5,5) translate(0px,0px); }
+	100% { opacity: 1; -webkit-transform: scale(1,1) translate(0px,0px); }
+}
+@-ms-keyframes logomove{
+	0% { opacity: 0; -ms-transform: scale(5,5) translate(0px,0px); }
+	100% { opacity: 1; -ms-transform: scale(1,1) translate(0px,0px); }
+}
+@keyframes logomove{
+	0% { opacity: 0; -webkit-transform: scale(5,5) translate(0px,0px); }
+	100% { opacity: 1; -webkit-transform: scale(1,1) translate(0px,0px); }
 }
 /*h5 info*/
 .h5-info{
