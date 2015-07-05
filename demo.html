@@ -12,7 +12,7 @@
 	::-webkit-scrollbar{display: none;}
 	html,body{margin: 0;padding: 0;overflow: hidden;height: 100%;}
 	#container{height: 100%;width: 100%;position: relative;}
-	#container > section,#container .cover{position: absolute;padding: 0;top: 0;height: 100%;width: 100%;overflow-y: scroll;transition: transform .3s ease-in 0s;-webkit-transition: -webkit-transform .3s ease-in 0s;}
+	#container > section,#container .cover{position: absolute;padding: 0;top: 0;height: 100%;width: 100%;overflow-y: scroll; transition: all .3s ease-in 0s;-webkit-transition: all .3s ease-in 0s;}
 	#container .cover{background-color: #f60;z-index: 4;right: 0;transition: transform .5s linear 0s;-webkit-transition: -webkit-transform .5s linear 0s;}
 </style>
 </head>
@@ -29,12 +29,19 @@
 		text-align: center;
 		font: normal 2rem/1.5 "Microsoft Yahei";
 	}
+	#logo{
+		font: bold 3rem/1.2 "Arial";
+		position: absolute;
+		left: 0;
+		top: 0;
+	}
 </style>
 	<div id="container">
 		<div class="cover">
 			
 		</div>
 		<section>
+			<div id="logo" class="run">LOGO</div>
 			<ul class="run" id="test">
 				<li>选项1</li>
 				<li>选项2</li>
@@ -157,8 +164,20 @@
 			}
 		};
 		document.getElementById('test').run = function(per, dir){
-			this.style.backgroundColor = "rgb(0,"+(256-256*per|0)+",0)";
+			this.style.backgroundColor = "rgb(0,"+(256-128*per|0)+",0)";
 			this.style.textIndent = 200*per+"px";
+		};
+		document.getElementById('logo').run = function(per, dir){
+			this.style.top = this.parentNode.scrollTop + "px";
+			this.style.left = (function(p){
+				if( p < .2 ){
+					return "0px";
+				}else if( p > .8 ){
+					return "300px";
+				}else{
+					return 500 * (p-.2) + "px";
+				}
+			})(per);
 		};
 	</script>
 	<script src="js/slide.js"></script>
