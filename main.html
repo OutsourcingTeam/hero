@@ -42,9 +42,9 @@
 		<div class="cover">
 			
 		</div>
-<!-- 		<section class="active">
-			<div class="page1">
-		        <img src="images/1.png" />
+		<section>
+			<div class="page1" id="page1">
+		        <img class="p1-bg" src="images/1.png" />
 		        <div class="circle"></div>
 		        <div class="logo">
 		            <h3><span>英</span><span>雄</span><span>榜</span></h3>
@@ -64,7 +64,7 @@
 		        <div class="h5-info h5-info01">定制型<b></b></div>
 		        <div class="h5-info h5-info02">工具型<b></b></div>
 		    </div>
-	    </section> -->
+	    </section>
 		<section>
 			<div class="page2">
 		        <p class="text run" id="text01">
@@ -157,6 +157,13 @@
 		        <img class="p2-bg run" id="bg01" src="images/p2-1.png" />
 		        <img class="p2-bg run" id="bg02" src="images/p2-2.png" />
 		        <img class="p2-bg run" id="bg03" src="images/p2-1.png" />
+		        <img class="p2-bg run" id="bg04" src="images/p2-2.png" />
+		        <img class="p2-bg run" id="bg05" src="images/p2-1.png" />
+		        <img class="p2-bg run" id="bg06" src="images/p2-2.png" />
+		        <img class="p2-bg run" id="bg07" src="images/p2-1.png" />
+		        <img class="p2-bg run" id="bg08" src="images/p2-2.png" />
+		        <img class="p2-bg run" id="bg09" src="images/p2-1.png" />
+		        <img class="p2-bg run" id="bg10" src="images/p2-2.png" />
 		        <!-- <img class="p2-sun " src="images/sun.png" /> -->
 		        <!-- <img class="flower " src="images/flower.png" /> -->
 		        <!-- <img class="bird" src="images/bird.png" /> -->
@@ -177,6 +184,10 @@
 			all_images : [], //根据每组数据的src属性进行加载判断
 			ready: function(){
 				console.log( "ready" );
+				setTimeout(function(){
+					document.getElementById('page1').classList.add('active');
+				},1000);
+				
 			}
 		};
 
@@ -213,6 +224,7 @@
 						el.style.cssText=fadeCss(0,0,definedCss);
 					}
 				}else{
+					
 					if(per>pArray[0] && per<pMin[0]){
 						ratio=(per-pArray[0])/(pMin[0]-pArray[0]);
 						el.style.cssText=fadeCss(fixedTop+cTop+(1-ratio)*cOffset,ratio+0.1,definedCss);
@@ -239,11 +251,21 @@
 		fadeAction('text06',[0.47,0.6],20,200,'right:100px;');
 		fadeAction('text07',[0.57,0.7],20,200,'right:100px;');
 		fadeAction('text08',[0.67,0.8],20,200,'left:50px;');
-		fadeAction('text09',[0.77,0.9],20,200,'left:50px;');
-		fadeAction('text10',[0.87,0.99],20,200,'left:50px;','end');
-		fadeAction('bg01',[0,0.3],400,50,'','begin');
-		fadeAction('bg02',[0.2,0.9],400,50,'');
-		fadeAction('bg03',[0.7,1],400,50,'','end');
+		fadeAction('text09',[0.77,0.9],200,200,'left:50px;');
+		fadeAction('text10',[0.87,0.99],200,200,'left:50px;','end');
+		fadeAction('bg01',[0,0.1],400,50,'','begin');
+		fadeAction('bg02',[0.07,0.2],400,50,'');
+		fadeAction('bg03',[0.17,0.3],400,50,'');
+		fadeAction('bg04',[0.27,0.4],400,50,'');
+		fadeAction('bg05',[0.37,0.5],400,50,'');
+		fadeAction('bg06',[0.47,0.6],400,50,'');
+		fadeAction('bg07',[0.57,0.7],400,50,'');
+		fadeAction('bg08',[0.67,0.8],400,50,'');
+		fadeAction('bg09',[0.77,0.9],400,50,'');
+		fadeAction('bg10',[0.87,0.99],400,50,'','end');
+		// fadeAction('bg01',[0,0.3],400,50,'','begin');
+		// fadeAction('bg02',[0.2,0.9],400,50,'');
+		// fadeAction('bg03',[0.7,1],400,50,'','end');
 
 
 		// document.getElementById('text01').run = function(per, dir){
