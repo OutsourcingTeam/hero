@@ -129,7 +129,9 @@
 			sh = this.scrollHeight;
 		scrollTy = st;
 		if( Math.abs( st + ch - sh) < 1 ){
-			transform_set(this, dir );
+			if( st > 1 && dir < 0 || st < 1 && dir > 0 ){
+				transform_set(this, dir );
+			}
 		}else{
 			$(".run", this).forEach(function(r){
 				if( typeof r.run === "function" ){
