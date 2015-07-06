@@ -10,10 +10,12 @@
 	<title>slides</title>
 <style>
 	::-webkit-scrollbar{display: none;}
+	html{touch-action:none;} /*IE 禁止touch事件*/
 	html,body{margin: 0;padding: 0;overflow: hidden;height: 100%;}
 	#container{height: 100%;width: 100%;position: relative;}
 	#container > section,#container .cover{position: absolute;padding: 0;top: 0;height: 100%;width: 100%;overflow-y: scroll; transition: all .3s ease-in 0s;-webkit-transition: all .3s ease-in 0s;}
 	#container .cover{background-color: #f60;z-index: 4;right: 0;transition: transform .5s linear 0s;-webkit-transition: -webkit-transform .5s linear 0s;}
+	#holder{position: absolute;width: 100%;height: 100%;left: 0;top: 0;z-index: 1;}
 </style>
 </head>
 <body>
@@ -146,7 +148,7 @@
 			</ul>
 		</section>
 		<section class="center with-cover">
-			<a href="javascript:void(0);" onclick="transform_set(5);">点击跳转到第5页面</a>
+			<a href="javascript:void(0);" onclick="transform_set(5);" style="position:relative;z-index:1001;">点击跳转到第5页面</a>
 		</section>
 		<section>
 			
@@ -156,6 +158,7 @@
 		<section></section>
 		<section></section>
 	</div>
+	<div id="holder" tabindex="-1"></div>
 	<script>
 		conf = {
 			all_images : [], //根据每组数据的src属性进行加载判断
