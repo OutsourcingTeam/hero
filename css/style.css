@@ -361,12 +361,12 @@ body{font-size:14px;background:#f1f1f1;}
 
 /*page2
 ----------------------------------------------------------------*/
-.page2{
-	width:640px;
+.page2{position:relative;
+	width:640px;height:10000px;
 	margin:0 auto;
 	background:url(images/bg.png) 0 0 repeat-y;}
 /*text*/
-.text{
+.text{position:absolute;opacity:0;
 	padding:0 10px;
 	overflow:hidden;list-style:none;
 }
@@ -399,9 +399,8 @@ body{font-size:14px;background:#f1f1f1;}
 	background:url(images/team.png) 0 0 no-repeat;
 }
 /*p2-bg*/
-
+.page2 img{position:absolute;opacity:0;display:block;}
 .p2-bg{display:block;width:100%;}
-
 /*sun*/
 .p2-sun{display:block;width:120px;height:120px;}
 
