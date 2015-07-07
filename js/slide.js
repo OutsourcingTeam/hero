@@ -91,8 +91,8 @@
 				label.style.cssText = "position:absolute;"
 					+ "width:"+osd.offsetWidth+"px;"
 					+ "height:"+osd.offsetHeight+"px;"
-					+ "left:"+(osd.offsetLeft-container.offsetLeft)+"px;"
-					+ "top:"+osd.offsetTop+"px;"
+					+ "left:"+osd.offsetLeft+"px;"
+					+ "top:"+(osd.offsetTop-sections[current_index].scrollTop)+"px;"
 					+ "cursor:pointer;"
 					;
 				$.on(label, "click touchstart", function(e){
@@ -209,6 +209,18 @@
 				if( typeof r.run === "function" ){
 					r.run(_this.scrollTop == (sh-ch) ? 1 : _this.scrollTop / (sh-ch) , dir);
 				}
+			});
+
+			var osds = $(".outstanding", _this);
+			$("label",holder).forEach(function(label, i){
+				osd = osds[i];
+				label.style.cssText = "position:absolute;"
+					+ "width:"+osd.offsetWidth+"px;"
+					+ "height:"+osd.offsetHeight+"px;"
+					+ "left:"+osd.offsetLeft+"px;"
+					+ "top:"+(osd.offsetTop-_this.scrollTop)+"px;"
+					+ "cursor:pointer;"
+					;
 			});
 		}
 	}

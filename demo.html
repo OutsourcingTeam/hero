@@ -13,10 +13,9 @@
 	::-webkit-scrollbar{display: none;}
 	html{touch-action:none;} /*IE 禁止touch事件*/
 	html,body{margin: 0;padding: 0;overflow: hidden;height: 100%;}
-	#container{height: 100%;width: 100%;position: relative;}
+	#container{height: 100%;width: 100%;position: relative;margin: 0 auto; max-width: 640px;}
 	#container > section,#container .cover{position: absolute;padding: 0;top: 0;height: 100%;width: 100%;overflow-y: scroll; transition: all .3s ease-in 0s;-webkit-transition: all .3s ease-in 0s;}
 	#container .cover{background-color: #f60;z-index: 4;right: 0;transition: transform .5s linear 0s;-webkit-transition: -webkit-transform .5s linear 0s;}
-	#container > section > *{position: relative;}
 </style>
 </head>
 <body>
@@ -32,6 +31,10 @@
 		left: -140px;
 		top: 0;
 		z-index: 1;
+	}
+	.run{
+		position: absolute;
+		top: 0;
 	}
 </style>
 	<div id="container">
@@ -56,7 +59,7 @@
 				<li>选项13</li>
 				<li>选项14</li>
 				<li>选项15</li>
-				<li>选项16</li>
+				<li><a href="http://www.baidu.com" target="_blank" class="outstanding">点击打开百度</a></li>
 				<li>选项17</li>
 				<li>选项18</li>
 				<li>选项19</li>
