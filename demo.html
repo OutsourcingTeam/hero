@@ -28,7 +28,7 @@
 	#logo{
 		font: bold 3rem/1.2 "Arial";
 		position: absolute;
-		left: -140px;
+		left:-140px;
 		top: 0;
 		z-index: 1;
 	}
@@ -166,13 +166,10 @@
 			}
 		};
 		var W = document.documentElement.clientWidth;
-		document.getElementById('test').run = function(per, dir){
-			this.style.backgroundColor = "rgba(0,"+(256-128*per|0)+",0,.3)";
-			this.style.textIndent = 200*per+"px";
-		};
 		document.getElementById('logo').run = function(per, dir){
-			this.style.top = this.parentNode.scrollTop + "px";
-			this.style.left = (140+W) * per - 140 + "px";
+			this.style.cssText = 
+				"-webkit-transform: translate3d("+( (140+W) * per |0)+"px, "+(this.parentNode.scrollTop|0)+"px, 0); "
+				+"transform: translate3d("+((140+W) * per |0)+"px, "+(this.parentNode.scrollTop|0)+"px, 0);";
 		};
 	</script>
 	<script src="js/slide.js"></script>

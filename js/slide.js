@@ -10,7 +10,7 @@
 		holder = document.createElement("div"),
 		current_index = 0,
 		css_model = function(h,l){
-			return "-webkit-transform: translate("+(l|0)+"px, "+(h|0)+"px); transform: translate("+(l|0)+"px, "+(h|0)+"px);";
+			return "-webkit-transform: translate3d("+(l|0)+"px, "+(h|0)+"px, 0); transform: translate3d("+(l|0)+"px, "+(h|0)+"px, 0);";
 		};
 
 		holder.style.cssText = "position: absolute;width: 100%;height: 100%;left: 0;top: 0;z-index: 1;";
@@ -150,7 +150,6 @@
 		},300);
 	}
 
-
 	// 事件
 	var startTy, curTy, endTy, autoStep;
 	$.on(holder, "touchstart", function(e){
@@ -161,10 +160,7 @@
 			    endTy = touch.clientY;
 		run(curTy - endTy, e);
 		curTy = endTy;
-	}).on(holder, "MSPointerOut", function(e){	// WP 部分机器性能对于批量设置style性能太差，改用专属的click代替
-		run( e.clientY > document.documentElement.clientHeight / 2 ? step*5 : -step*10, e);
 	}).on(holder, "touchend", function(e){
-		if( window.navigator.msPointerEnabled ){return;}
 		var touch = e.changedTouches[0],
 			    endTy = touch.clientY;
 		run(startTy > endTy ? 1 : -1, e);
