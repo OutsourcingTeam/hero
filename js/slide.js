@@ -6,12 +6,14 @@
 	var 
 		cover = $(".cover")[0],
 		sections = $("#container > section"),
-		holder = $("#holder"),
+		holder = document.createElement("div"),
 		current_index = 0,
 		css_model = function(h,l){
 			return "-webkit-transform: translate("+(l|0)+"px, "+(h|0)+"px); transform: translate("+(l|0)+"px, "+(h|0)+"px);";
 		};
 
+		holder.style.cssText = "position: absolute;width: 100%;height: 100%;left: 0;top: 0;z-index: 1;";
+		document.body.appendChild(holder);
 		/*批量事件绑定*/
 	$.on = function(dom, eventType, f){
 		[].concat(dom).forEach(function(d){
@@ -138,7 +140,7 @@
 			    endTy = touch.clientY;
 		run(startTy > endTy ? 1 : -1, e);
 		startTy = curTy = endTy = 0;
-	}).on(holder, "keydown", function(e){
+	}).on(document, "keydown", function(e){
 		switch(e.keyCode){
 			case 32: 
 			case 39:
@@ -146,8 +148,8 @@
 			case 37:
 			case 38: run( -step, e ); break; 
 		}
-	}).on(holder, "mousewheel", function(e){
-		run(-e.wheelDeltaY, e );
+	}).on(document, "mousewheel", function(e){
+		run(e.wheelDeltaY < 0 ? step: -step, e );
 	});
 
 	function run(dir, e){
@@ -162,8 +164,14 @@
 
 		st = _this.scrollTop = _this.scrollTop + dir;
 
-		if( _this.scrollTop + ch === sh && e.type !== "touchmove"){
+		// console.log(st);
+		// console.log(ch);
+		// console.log(sh);
+
+		if( _this.scrollTop + ch >= sh && e.type !== "touchmove"){
 			transform_set(_this, Math.abs(dir) / (dir||1) );
+		}else if(!_this.scrollTop && dir < 0){
+			transform_set(_this, -1 );
 		}else{
 			runs[current_index].forEach(function(r){
 				if( typeof r.run === "function" ){
