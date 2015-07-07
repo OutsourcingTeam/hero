@@ -201,11 +201,6 @@
 		}else if(!_this.scrollTop && dir < 0){
 			transform_set(_this, -1 );
 		}else{
-			runs[current_index].forEach(function(r){
-				if( typeof r.run === "function" ){
-					r.run(_this.scrollTop == (sh-ch) ? 1 : _this.scrollTop / (sh-ch) , dir);
-				}
-			});
 
 			var osds = $(".outstanding", _this);
 			$("label",holder).forEach(function(label, i){
@@ -219,6 +214,45 @@
 					;
 			});
 		}
+		runs[current_index].forEach(function(r){
+			if( typeof r.run === "function" ){
+				r.run(_this.scrollTop == (sh-ch) ? 1 : _this.scrollTop / (sh-ch) , dir);
+			}else if( typeof r.set === "function" ){
+				var trace = [],
+					set = {
+						begin: function(d){d.per = 0;trace.push(d);return this;},
+						end: function(d){d.per = 1;trace.push(d);return this;},
+						then: function(d){trace.push(d);return this;}
+					},
+					w = r.offsetWidth,
+					h = r.offsetHeight,
+					W = document.documentElement.clientWidth,
+					H = document.documentElement.clientHeight;
+				
+				r.set(set,w,h,W,H);
+
+				r.run = function(per, dir){
+					for (var i = 1; i < trace.length; i++) {
+						if( trace[i-1].per <= per && trace[i].per >= per ){
+							var prev = trace[i-1], 
+								next = trace[i],
+								rate = (per - prev.per) / (next.per - prev.per),
+								_x = (prev.x+(next.x-prev.x)*rate) || 0,
+								_y = (prev.y+(next.y-prev.y)*rate) + sections[current_index].scrollTop || 0,
+								_o = (prev.opacity+(next.opacity-prev.opacity)*rate);
+
+							var cssText = 
+								"-webkit-transform: translate3d("+_x+"px, "+_y+"px, 0);"
+								+"transform: translate3d("+_x+"px, "+_y+"px, 0);"
+								+"opacity: " + (isNaN(_o) ? 1 : _o)+ ";";
+							this.style.cssText = cssText;
+							return ;
+						}
+					};
+				};
+				r.run(_this.scrollTop == (sh-ch) ? 1 : _this.scrollTop / (sh-ch) , dir);
+			}
+		});
 	}
 
 })();
