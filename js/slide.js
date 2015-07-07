@@ -5,6 +5,7 @@
 		};
 	var 
 		cover = $(".cover")[0],
+		container = $("#container")[0],
 		sections = $("#container > section"),
 		holder = document.createElement("div"),
 		current_index = 0,
@@ -13,7 +14,7 @@
 		};
 
 		holder.style.cssText = "position: absolute;width: 100%;height: 100%;left: 0;top: 0;z-index: 1;";
-		document.body.appendChild(holder);
+		container.appendChild(holder);
 		/*批量事件绑定*/
 	$.on = function(dom, eventType, f){
 		[].concat(dom).forEach(function(d){
@@ -34,6 +35,7 @@
 		}
 		i = Math.min( Math.max( 0, i ), sections.length - 1);
 
+		transform_set.running = true;
 		if( sections[i].classList.contains("with-cover") ){	//如果有画轴嵌入, 动画时长增加
 			cover.style.cssText = css_model(0);
 			setTimeout(set,500);
@@ -46,6 +48,7 @@
 		// 依次设置所有section参数
 		function set(){
 			if( i && current_index === i ){
+				transform_set.running = false;
 				return;
 			}
 			sections.forEach(function(section, index){
@@ -80,8 +83,32 @@
 						},0);			 
 				}
 			});
+
+			holder.innerHTML = "";
+			//在holder上增加新按钮
+			$(".outstanding", sections[current_index]).forEach(function(osd){
+				var label = document.createElement("label");
+				label.style.cssText = "position:absolute;"
+					+ "width:"+osd.offsetWidth+"px;"
+					+ "height:"+osd.offsetHeight+"px;"
+					+ "left:"+(osd.offsetLeft-container.offsetLeft)+"px;"
+					+ "top:"+osd.offsetTop+"px;"
+					+ "cursor:pointer;"
+					;
+				$.on(label, "click touchstart", function(e){
+					e.stopPropagation();
+					e.preventDefault();
+					osd.click && osd.click(); 
+				});
+				holder.appendChild(label);
+			});
+
+			setTimeout(function(){
+				transform_set.running = false;
+			},200);
 		}
 	};
+	transform_set.running = false;
 
 	transform_set(0);
 	// resize
@@ -94,9 +121,11 @@
 	all_images = [].slice.call(conf.all_images||[]);
 	var step = 20, runs = [], ready = function(){
 		sections.forEach(function(s, i){
-			var div = document.createElement("div");
-			div.style.cssText = "position:absolute;width:100%;left:0;top:0;height:" + ( Math.ceil( (s.scrollHeight - s.clientHeight) / step ) * step + s.clientHeight ) + "px;";
-			s.appendChild(div);
+			var div = document.createElement("div"), bg = s.getAttribute("data-bg");
+			div.style.cssText = "position:absolute;width:100%;left:0;top:0;"
+				+"height:" + ( Math.ceil( (s.scrollHeight - s.clientHeight) / step ) * step + s.clientHeight ) + "px;"
+				+"background-image:"+( bg ? ("url("+bg+");") : "none;" );
+			s.insertBefore(div, s.firstChild);
 			runs[i] = $(".run", s);
 		});
 		conf.ready();
@@ -132,7 +161,7 @@
 			    endTy = touch.clientY;
 		run(curTy - endTy, e);
 		curTy = endTy;
-	}).on(holder, "MSPointerOver", function(e){	// WP 部分机器性能对于批量设置style性能太差，改用专属的click代替
+	}).on(holder, "MSPointerOut", function(e){	// WP 部分机器性能对于批量设置style性能太差，改用专属的click代替
 		run( e.clientY > document.documentElement.clientHeight / 2 ? step*5 : -step*10, e);
 	}).on(holder, "touchend", function(e){
 		if( window.navigator.msPointerEnabled ){return;}
@@ -155,6 +184,9 @@
 	function run(dir, e){
 		e.stopPropagation();
     	e.preventDefault();
+    	if( transform_set.running ){
+    		return;
+    	}
 
 		var _this = sections[current_index];
 		var st = _this.scrollTop,

@@ -9,23 +9,19 @@
     <meta content="width=device-width, initial-scale=1.0,  minimum-scale=1.0, maximum-scale=1.0" name="viewport">
 	<title>slides</title>
 <style>
+	*{margin: 0;padding: 0;border: 0;}
 	::-webkit-scrollbar{display: none;}
 	html{touch-action:none;} /*IE 禁止touch事件*/
 	html,body{margin: 0;padding: 0;overflow: hidden;height: 100%;}
 	#container{height: 100%;width: 100%;position: relative;}
 	#container > section,#container .cover{position: absolute;padding: 0;top: 0;height: 100%;width: 100%;overflow-y: scroll; transition: all .3s ease-in 0s;-webkit-transition: all .3s ease-in 0s;}
 	#container .cover{background-color: #f60;z-index: 4;right: 0;transition: transform .5s linear 0s;-webkit-transition: -webkit-transform .5s linear 0s;}
+	#container > section > *{position: relative;}
 </style>
 </head>
 <body>
 
 <style>
-	section:nth-child(2n+1){
-		background: red;
-	}
-	section:nth-child(2n){
-		background: #0f0;
-	}
 	.center{
 		text-align: center;
 		font: normal 2rem/1.5 "Microsoft Yahei";
@@ -33,15 +29,16 @@
 	#logo{
 		font: bold 3rem/1.2 "Arial";
 		position: absolute;
-		left: 0;
+		left: -140px;
 		top: 0;
+		z-index: 1;
 	}
 </style>
 	<div id="container">
 		<div class="cover">
 			
 		</div>
-		<section>
+		<section data-bg="css/images/bg.png">
 			<div id="logo" class="run">LOGO</div>
 			<ul class="run" id="test">
 				<li>选项1</li>
@@ -146,16 +143,17 @@
 				<li>选项100</li>
 			</ul>
 		</section>
-		<section class="center with-cover">
-			<a href="javascript:void(0);" onclick="transform_set(5);" style="position:relative;z-index:1001;">点击跳转到第5页面</a>
+		<section class="center">
+			<a href="javascript:void(0);" onclick="transform_set(5);" class="outstanding">点击跳转到第5页面</a>
+			<br>
+			<br>
+			<a href="http://www.baidu.com" target="_blank" class="outstanding">点击打开百度</a>
 		</section>
-		<section>
-			
-		</section>
-		<section></section>
-		<section></section>
-		<section></section>
-		<section></section>
+		<section>第2屏</section>
+		<section>第3屏</section>
+		<section>第4屏</section>
+		<section>第5屏</section>
+		<section>第6屏</section>
 	</div>
 	<script>
 		conf = {
@@ -164,21 +162,14 @@
 				console.log( "ready" );
 			}
 		};
+		var W = document.documentElement.clientWidth;
 		document.getElementById('test').run = function(per, dir){
-			this.style.backgroundColor = "rgb(0,"+(256-128*per|0)+",0)";
+			this.style.backgroundColor = "rgba(0,"+(256-128*per|0)+",0,.3)";
 			this.style.textIndent = 200*per+"px";
 		};
 		document.getElementById('logo').run = function(per, dir){
 			this.style.top = this.parentNode.scrollTop + "px";
-			this.style.left = (function(p){
-				if( p < .2 ){
-					return "0px";
-				}else if( p > .8 ){
-					return "300px";
-				}else{
-					return 500 * (p-.2) + "px";
-				}
-			})(per);
+			this.style.left = (140+W) * per - 140 + "px";
 		};
 	</script>
 	<script src="js/slide.js"></script>
