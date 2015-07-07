@@ -42,7 +42,7 @@
 		<div class="cover">
 			
 		</div>
-		<!-- <section>
+		<section>
 			<div class="page1" id="page1">
 	            <img src="images/1.png" class="p1-bg" />
 
@@ -65,9 +65,31 @@
 	            <div class="h5-info h5-info01">定制型<b></b></div>
 	            <div class="h5-info h5-info02">工具型<b></b></div>
 	        </div>
-	    </section> -->
+	    </section>
 		<section>
 			<div class="page2">
+
+
+				<img class="p2-bg run" id="bg01" src="images/p2-1.png" />
+		        <img class="p2-bg run" id="bg02" src="images/p2-2.png" />
+		        <img class="p2-bg run" id="bg03" src="images/p2-1.png" />
+		        <img class="p2-bg run" id="bg04" src="images/p2-2.png" />
+		        <img class="p2-bg run" id="bg05" src="images/p2-1.png" />
+		        <img class="p2-bg run" id="bg06" src="images/p2-2.png" />
+		        <img class="p2-bg run" id="bg07" src="images/p2-1.png" />
+		        <img class="p2-bg run" id="bg08" src="images/p2-2.png" />
+		        <img class="p2-bg run" id="bg09" src="images/p2-1.png" />
+		        <img class="p2-bg run" id="bg10" src="images/p2-2.png" />
+
+		        <img class="p2-sun run" id="sun" src="images/sun.png" />
+		        <!-- <img class="flower " src="images/flower.png" /> -->
+		        <img class="bird run" id="bird01" src="images/bird.png" />
+		        <img class="bird run" id="bird02" src="images/crane-n.png" />
+		        <img class="bird run" id="tree" src="images/tree.png" />
+		        <!-- <img class="crane" src="images/crane.png" /> -->
+		        <!-- <img src="images/cloud.png" class="run" id="cloud" /> -->
+
+				
 		        <p class="text run" id="text01">
 		            <em>定制</em>
 		            <span>以高质量的精品画面打动用户</span>
@@ -155,23 +177,7 @@
 		            <span>成名之作</span>
 		            <span>斯巴鲁</span>
 		        </p>
-		        <img class="p2-bg run" id="bg01" src="images/p2-1.png" />
-		        <img class="p2-bg run" id="bg02" src="images/p2-2.png" />
-		        <img class="p2-bg run" id="bg03" src="images/p2-1.png" />
-		        <img class="p2-bg run" id="bg04" src="images/p2-2.png" />
-		        <img class="p2-bg run" id="bg05" src="images/p2-1.png" />
-		        <img class="p2-bg run" id="bg06" src="images/p2-2.png" />
-		        <img class="p2-bg run" id="bg07" src="images/p2-1.png" />
-		        <img class="p2-bg run" id="bg08" src="images/p2-2.png" />
-		        <img class="p2-bg run" id="bg09" src="images/p2-1.png" />
-		        <img class="p2-bg run" id="bg10" src="images/p2-2.png" />
-
-		        <img class="p2-sun run" id="sun" src="images/sun.png" />
-		        <!-- <img class="flower " src="images/flower.png" /> -->
-		        <img class="bird run" id="bird01" src="images/bird.png" />
-		        <img class="bird run" id="bird02" src="images/tree.png" />
-		        <!-- <img class="crane" src="images/crane.png" /> -->
-		        <!-- <img src="images/cloud.png" class="run" id="cloud" /> -->
+		        
 		    </div>
 	    </section>
 
@@ -182,7 +188,7 @@
 			ready: function(){
 				console.log( "ready" );
 				setTimeout(function(){
-					// document.getElementById('page1').classList.add('active');
+					document.getElementById('page1').classList.add('active');
 				},1000);
 			}
 		};
@@ -269,8 +275,25 @@
 		// 	this.style.cssText=fadeCss(fixedTop,1,'');
 		// }
 
-		var moveAction=function(id,pArray){
+		var moveCss=function(t,l,o,definedCss){
+			return 'top:'+t+'px;left:'+l+'px;opacity:'+o+';'+definedCss;
+		}
+
+		var moveAction=function(id,pArray,direction){
+			var el=document.getElementById(id);
 			el.run=function(per,dir){
+				var fixedTop = el.parentNode.parentNode.scrollTop;
+
+				if(per>pArray[0] && per<pArray[1]){
+					ratio=(pArray[1]-per)/(pArray[1]-pArray[0]);
+					if(direction=="left"){
+						el.style.cssText=moveCss(fixedTop+300*ratio,document.body.offsetWidth*(0.9-ratio),0.5+ratio);
+					}else if(direction=="right"){
+						el.style.cssText=moveCss(fixedTop+300*ratio,document.body.offsetWidth*(0.1+ratio),0.5+ratio);
+					}
+				}else{
+					el.style.cssText=moveCss(0,0,0);
+				}
 			}
 		}
 
@@ -296,104 +319,9 @@
 		bgAction('bg10',[0.88,1.0],'bottom',50,'end');
 		bgAction('sun',[0,0.2],'bottom',800,'begin');
 
+		moveAction('bird01',[0.2,0.4],'left');
+		moveAction('bird02',[0.4,0.6],'right');
 
-
-
-
-		moveAction('bird01',[0,5],'bottom',800,'begin');
-
-		// var fadeAction=function(id,pArray,cTop,cOffset,definedCss,edge){
-		// 	var el=document.getElementById(id);
-		// 	if(edge=='begin'){
-		// 		el.style.cssText=fadeCss(cTop,1,definedCss);
-		// 	}
-		// 	el.run=function(per,dir){
-		// 		var fixedTop = el.parentNode.parentNode.scrollTop;
-		// 		var pMin=[];
-		// 		pMin[0]=(pArray[0]+pArray[1])/2-(pArray[1]-pArray[0])/10;
-		// 		pMin[1]=(pArray[0]+pArray[1])/2+(pArray[1]-pArray[0])/10;
-		// 		var ratio;
-		// 		if(edge=='begin'){
-		// 			if(per<pArray[1]){
-		// 				ratio=(pArray[1]-per)/(pArray[1]-pArray[0]);
-		// 				el.style.cssText=fadeCss(fixedTop+cTop-(1-ratio)*cOffset,ratio+0.1,definedCss);
-		// 			}else{
-		// 				el.style.cssText=fadeCss(0,0,definedCss);
-		// 			}
-		// 		}else if(edge=='end'){
-		// 			if(per>pArray[0] && per<pArray[1]){
-		// 				ratio=(per-pArray[0])/(pArray[1]-pArray[0]);
-		// 				el.style.cssText=fadeCss(fixedTop+cTop+(1-ratio)*cOffset,ratio+0.1,definedCss);
-		// 			}else if(per>=pArray[1]){
-		// 				el.style.cssText=fadeCss(fixedTop+cTop,1,definedCss);
-		// 			}
-		// 			else{
-		// 				el.style.cssText=fadeCss(0,0,definedCss);
-		// 			}
-		// 		}else{
-					
-		// 			if(per>pArray[0] && per<pMin[0]){
-		// 				ratio=(per-pArray[0])/(pMin[0]-pArray[0]);
-		// 				el.style.cssText=fadeCss(fixedTop+cTop+(1-ratio)*cOffset,ratio+0.1,definedCss);
-		// 			}
-		// 			else if(per>=pMin[0] && per<=pMin[1]){
-		// 				el.style.cssText=fadeCss(fixedTop+cTop,1,definedCss);
-		// 			}
-		// 			else if(per>pMin[1] && per<pArray[1]){
-		// 				ratio=(pArray[1]-per)/(pArray[1]-pMin[1]);
-		// 				el.style.cssText=fadeCss(fixedTop+cTop-(1-ratio)*cOffset,ratio+0.1,definedCss);
-		// 			}
-		// 			else{
-		// 				el.style.cssText=fadeCss(0,0,definedCss);
-		// 			}
-		// 		}
-		// 	}
-		// }
-
-		// fadeAction('text01',[0,0.1],15,200,'right:100px;','begin');
-		// fadeAction('text02',[0.07,0.2],20,200,'right:100px;');
-		// fadeAction('text03',[0.17,0.3],20,200,'right:100px;');
-		// fadeAction('text04',[0.27,0.4],20,200,'right:100px;');
-		// fadeAction('text05',[0.37,0.5],20,200,'right:100px;');
-		// fadeAction('text06',[0.47,0.6],20,200,'right:100px;');
-		// fadeAction('text07',[0.57,0.7],20,200,'right:100px;');
-		// fadeAction('text08',[0.67,0.8],20,200,'left:50px;');
-		// fadeAction('text09',[0.77,0.9],200,200,'left:50px;');
-		// fadeAction('text10',[0.87,0.99],200,200,'left:50px;','end');
-		// fadeAction('bg01',[0,0.1],400,50,'','begin');
-		// fadeAction('bg02',[0.07,0.2],400,50,'');
-		// fadeAction('bg03',[0.17,0.3],400,50,'');
-		// fadeAction('bg04',[0.27,0.4],400,50,'');
-		// fadeAction('bg05',[0.37,0.5],400,50,'');
-		// fadeAction('bg06',[0.47,0.6],400,50,'');
-		// fadeAction('bg07',[0.57,0.7],400,50,'');
-		// fadeAction('bg08',[0.67,0.8],400,50,'');
-		// fadeAction('bg09',[0.77,0.9],400,50,'');
-		// fadeAction('bg10',[0.87,0.99],400,50,'','end');
-		// fadeAction('bg01',[0,0.3],400,50,'','begin');
-		// fadeAction('bg02',[0.2,0.9],400,50,'');
-		// fadeAction('bg03',[0.7,1],400,50,'','end');
-
-
-		// document.getElementById('text01').run = function(per, dir){
-		// 	var fixedTop = this.parentNode.parentNode.scrollTop;
-		// 		if(per>0 && per<0.04){
-		// 			console.log(per/0.04*100)
-		// 			this.style.top=fixedTop + 200 - per/0.04*100 + "px";
-		// 			this.style.opacity=per/0.04;
-		// 		}else if(per>0.06 && per<0.1){
-		// 			this.style.top=fixedTop + 100 - (per-0.04)/0.04*100  + "px";
-		// 			this.style.opacity=(0.1-per)/0.04;
-		// 		}else if(per>0.04 && per<0.06){
-		// 			this.style.top=fixedTop + 100 + "px";
-		// 			this.style.opacity=1;
-		// 		}
-		// 		else{
-		// 			this.style.top=0;
-		// 			this.style.opacity=0;
-		// 		}
-
-		// };
 	</script>
 	<script src="js/slide.js"></script>
 </body>
