@@ -122,7 +122,7 @@
 	var step = 20, runs = [], ready = function(){
 		sections.forEach(function(s, i){
 			var div = document.createElement("div"), bg = s.getAttribute("data-bg");
-			div.style.cssText = "position:absolute;width:100%;left:0;top:0;"
+			div.style.cssText = "position:absolute;width:100%;left:0;top:0;z-index:-1;"
 				+"height:" + ( Math.ceil( (s.scrollHeight - s.clientHeight) / step ) * step + s.clientHeight ) + "px;"
 				+"background-image:"+( bg ? ("url("+bg+");") : "none;" );
 			s.insertBefore(div, s.firstChild);
