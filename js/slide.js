@@ -216,12 +216,16 @@
 		}
 		runs[current_index].forEach(function(r){
 			if( typeof r.run === "function" ){
-				r.run(_this.scrollTop == (sh-ch) ? 1 : _this.scrollTop / (sh-ch) , dir);
+				var per = _this.scrollTop == (sh-ch) ? 1 : _this.scrollTop / (sh-ch);
+				r.filter = r.filter || function(per){return true};
+				if( r.filter(per) ){
+					r.run(per, dir);
+				}
 			}else if( typeof r.set === "function" ){
 				var trace = [],
 					set = {
-						begin: function(d){d.per = 0;trace.push(d);return this;},
-						end: function(d){d.per = 1;trace.push(d);return this;},
+						begin: function(d){d.per = d.per || 0;trace.push(d);return this;},
+						end: function(d){d.per = d.per || 1;trace.push(d);return this;},
 						then: function(d){trace.push(d);return this;}
 					},
 					w = r.offsetWidth,
@@ -231,6 +235,9 @@
 				
 				r.set(set,w,h,W,H);
 
+				r.filter = function(per){
+					return per >= trace[0].per && per <= trace[trace.length-1].per;
+				};
 				r.run = function(per, dir){
 					for (var i = 1; i < trace.length; i++) {
 						if( trace[i-1].per <= per && trace[i].per >= per ){
@@ -255,7 +262,11 @@
 						}
 					};
 				};
-				r.run(_this.scrollTop == (sh-ch) ? 1 : _this.scrollTop / (sh-ch) , dir);
+
+				var per = _this.scrollTop == (sh-ch) ? 1 : _this.scrollTop / (sh-ch);
+				if( r.filter(per) ){
+					r.run( per, dir);
+				}
 			}
 		});
 	}

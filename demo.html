@@ -35,8 +35,12 @@
 		position: absolute;
 		top: 0;
 	}
-	#logo2{
+	.logo2{
 		right: 0;
+		width: 100px;
+		height: 75px;
+		background: url(images/p2-1.png);
+		background-size: 100% 100%;
 	}
 </style>
 	<div id="container">
@@ -147,7 +151,9 @@
 				<li>选项99</li>
 				<li>选项100</li>
 			</ul>
-			<h2 class="run" id="logo2">LOGO2</h2>
+			<h2 class="run logo2"></h2>
+			<h2 class="run logo2"></h2>
+			<h2 class="run logo2"></h2>
 		</section>
 		<section class="center" data-bg="url(css/images/bg.png)">
 			<a href="javascript:void(0);" onclick="transform_set(5);" class="outstanding">点击跳转到第5页面</a>
@@ -181,36 +187,69 @@
 		*	w,h: 当前.run元素的offsetSize
 		*	W,H: 屏幕宽高
 		*/
-		document.getElementById('logo2').set = function(set,w,h,W,H){
-			set.begin({x:0,y:0,rotate: 0, scale:1}).then({
-				per: .2,
-				x: w-W,
-				y: 300,
-				rotate: 180,
-				scale: .5
-			}).then({
-				per: .5,
-				x: -100,
-				y: 200,
-				opacity: 1,
-				rotate: 360,
-				scale: 1
-			}).then({
-				per: .7,
-				x: -100,
-				y: 200,
-				opacity: 1,
-				rotate: 240,
-				scale: 1.5
-			}).then({
-				per: .8,
-				x: -100,
-				y: 200,
-				opacity:.2,
-				rotate: 120,
-				scale: 1
-			}).end({x:w-W,y:H-h,rotate:0, scale:1});
-		};
+		// document.getElementById('logo2').set = function(set,w,h,W,H){
+		// 	set.begin({x:0,y:0,rotate: 0, scale:1}).then({
+		// 		per: .2,
+		// 		x: w-W,
+		// 		y: 300,
+		// 		rotate: 180,
+		// 		scale: .5
+		// 	}).then({
+		// 		per: .5,
+		// 		x: -100,
+		// 		y: 200,
+		// 		opacity: 1,
+		// 		rotate: 360,
+		// 		scale: 1
+		// 	}).then({
+		// 		per: .7,
+		// 		x: -100,
+		// 		y: 200,
+		// 		opacity: 1,
+		// 		rotate: 240,
+		// 		scale: 1.5
+		// 	}).then({
+		// 		per: .8,
+		// 		x: -100,
+		// 		y: 200,
+		// 		opacity:.2,
+		// 		rotate: 120,
+		// 		scale: 1
+		// 	}).end({x:w-W,y:H-h,rotate:0, scale:1});
+		// };
+
+		[].forEach.call(document.querySelectorAll('.logo2'),function(l){
+			l.set = function(set,w,h,W,H){
+				set.begin({x:0,y:0,rotate: 0, scale:1}).then({
+					per: .2,
+					x: w-W,
+					y: 300,
+					rotate: 180,
+					scale: .5
+				}).then({
+					per: .5,
+					x: -100,
+					y: 200,
+					opacity: 1,
+					rotate: 360,
+					scale: 1
+				}).then({
+					per: .7,
+					x: -100,
+					y: 200,
+					opacity: 1,
+					rotate: 240,
+					scale: 1.5
+				}).then({
+					per: .8,
+					x: -100,
+					y: 200,
+					opacity:.2,
+					rotate: 120,
+					scale: 1
+				}).end({x:w-W,y:H-h,rotate:0, scale:1});
+			};
+		});
 	</script>
 	<script src="js/slide.js"></script>
 </body>
