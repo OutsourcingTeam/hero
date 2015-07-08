@@ -43,7 +43,7 @@
 		<div class="cover">
 			
 		</div>
-		<!-- <section data-bg="url(css/images/bg.png);">
+		<section data-bg="url(css/images/bg.png);">
 			<div class="page1" id="page1">
 	            <img src="images/1.png" class="p1-bg" />
 
@@ -66,8 +66,8 @@
 	            <div class="h5-info h5-info01">定制型<b></b></div>
 	            <div class="h5-info h5-info02">工具型<b></b></div>
 	        </div>
-	    </section> -->
-		<section data-bg="url(css/images/bg.png);">
+	    </section>
+		<!-- <section data-bg="url(css/images/bg.png);">
 			<div class="page2">
 
 
@@ -185,7 +185,7 @@
 		        </p>
 		        
 		    </div>
-	    </section>
+	    </section> -->
 
 	</div>
 	<script>
@@ -194,187 +194,187 @@
 			ready: function(){
 				console.log( "ready" );
 				setTimeout(function(){
-					// document.getElementById('page1').classList.add('active');
+					document.getElementById('page1').classList.add('active');
 				},1000);
 			}
 		};
 
 
 
-		var fadeCss=function(t,o,definedCss){
-			return 'top:'+t+'px;opacity:'+o+';'+definedCss;
-		}
+		// var fadeCss=function(t,o,definedCss){
+		// 	return 'top:'+t+'px;opacity:'+o+';'+definedCss;
+		// }
 
 
-		var bgAction=function(id,pArray,cPositon,cOffset,edge){
-			var el=document.getElementById(id);
-			if(edge=='begin'){
-				el.style.cssText=fadeCss(document.body.offsetHeight-el.offsetHeight,1,'');
-			}
+		// var bgAction=function(id,pArray,cPositon,cOffset,edge){
+		// 	var el=document.getElementById(id);
+		// 	if(edge=='begin'){
+		// 		el.style.cssText=fadeCss(document.body.offsetHeight-el.offsetHeight,1,'');
+		// 	}
 
-			el.set = function(set,w,h,W,H){
-				set.begin({x:0,y:H-h}).then({
-					per: pArray[0],
-					x: 0,
-					y: H-h,
-					opacity:1
-				}).then({
-					per:pArray[1]-0.01,
-					x: 0,
-					y: H-h-cOffset,
-					opacity: 0.3
-				}).then({
-					per:pArray[1],
-					x: 0,
-					y: H-h-cOffset,
-					opacity: 0
-				}).end({x:0,y:H-h,opacity:0});
-			};
+		// 	el.set = function(set,w,h,W,H){
+		// 		set.begin({
+		// 			per: pArray[0],
+		// 			x: 0,
+		// 			y: H-h,
+		// 			opacity:1
+		// 		}).then({
+		// 			per:pArray[1]-0.01,
+		// 			x: 0,
+		// 			y: H-h-cOffset,
+		// 			opacity: 0.3
+		// 		}).then({
+		// 			per:pArray[1],
+		// 			x: 0,
+		// 			y: H-h-cOffset,
+		// 			opacity: 0
+		// 		}).end({x:0,y:H-h,opacity:0});
+		// 	};
 			
-		}
-		var flowerAction=function(id){
-			var el=document.getElementById(id);
+		// }
+		// var flowerAction=function(id){
+		// 	var el=document.getElementById(id);
 
-			el.set = function(set,w,h,W,H){
-				set.begin({scale:0}).then({
-					per:.8,
-					opacity:.3,
-					scale:0
-				}).then({
-					per:.9,
-					opacity:.8,
-					scale:1
-				}).end({scale:1,opacity:.7});
-			};
+		// 	el.set = function(set,w,h,W,H){
+		// 		set.begin({scale:0}).then({
+		// 			per:.8,
+		// 			opacity:.3,
+		// 			scale:0
+		// 		}).then({
+		// 			per:.9,
+		// 			opacity:.8,
+		// 			scale:1
+		// 		}).end({scale:1,opacity:.7});
+		// 	};
 			
-		}
+		// }
 
-		var fadeAction=function(id,pArray,cTop,cOffset,definedCss,edge){
-			var el=document.getElementById(id);
-			if(edge=='begin'){
-				el.style.cssText=fadeCss(cTop,1,definedCss);
-				el.set = function(set,w,h,W,H){
-					set.begin({x:0.5*W}).then({
-						per: pArray[0],
-						x: 0.5*W,
-						y: cTop,
-						opacity:1
-					}).then({
-						per:pArray[1],
-						x: 0.5*W,
-						y: cTop-cOffset,
-						opacity: 0
-					}).end({x:0,y:H-h,opacity:0});
-				};
-			}else if(edge=="end"){
-				el.set = function(set,w,h,W,H){
-					set.begin({x:0.5*W-0.5*w}).then({
-						per: pArray[0],
-						x: 0.5*W-0.5*w,
-						y: cTop+cOffset,
-						opacity:0
-					}).then({
-						per:pArray[1],
-						x: 0.5*W-0.5*w,
-						y: cTop,
-						opacity: 1
-					}).end({x:0,y:H-h,opacity:0});
-				};
-			}else{
-				el.set = function(set,w,h,W,H){
-					set.begin({x:0.5*W-0.5*w}).then({
-						per: pArray[0],
-						x: 0.5*W-0.5*w,
-						y: cTop+cOffset,
-						opacity:0
-					}).then({
-						per:(pArray[0]+pArray[1])*0.5,
-						x: 0.5*W-0.5*w,
-						y: cTop,
-						opacity: 1
-					}).then({
-						per:pArray[1],
-						x: 0.5*W-0.5*w,
-						y: cTop-cOffset,
-						opacity: 0
-					}).end({x:0,y:H-h,opacity:0});
-				};
-			}
-		}
+		// var fadeAction=function(id,pArray,cTop,cOffset,definedCss,edge){
+		// 	var el=document.getElementById(id);
+		// 	if(edge=='begin'){
+		// 		el.style.cssText=fadeCss(cTop,1,definedCss);
+		// 		el.set = function(set,w,h,W,H){
+		// 			set.begin({x:0.5*W}).then({
+		// 				per: pArray[0],
+		// 				x: 0.5*W,
+		// 				y: cTop,
+		// 				opacity:1
+		// 			}).then({
+		// 				per:pArray[1],
+		// 				x: 0.5*W,
+		// 				y: cTop-cOffset,
+		// 				opacity: 0
+		// 			}).end({x:0,y:H-h,opacity:0});
+		// 		};
+		// 	}else if(edge=="end"){
+		// 		el.set = function(set,w,h,W,H){
+		// 			set.begin({x:0.5*W-0.5*w}).then({
+		// 				per: pArray[0],
+		// 				x: 0.5*W-0.5*w,
+		// 				y: cTop+cOffset,
+		// 				opacity:0
+		// 			}).then({
+		// 				per:pArray[1],
+		// 				x: 0.5*W-0.5*w,
+		// 				y: cTop,
+		// 				opacity: 1
+		// 			}).end({x:0,y:H-h,opacity:0});
+		// 		};
+		// 	}else{
+		// 		el.set = function(set,w,h,W,H){
+		// 			set.begin({x:0.5*W-0.5*w}).then({
+		// 				per: pArray[0],
+		// 				x: 0.5*W-0.5*w,
+		// 				y: cTop+cOffset,
+		// 				opacity:0
+		// 			}).then({
+		// 				per:(pArray[0]+pArray[1])*0.5,
+		// 				x: 0.5*W-0.5*w,
+		// 				y: cTop,
+		// 				opacity: 1
+		// 			}).then({
+		// 				per:pArray[1],
+		// 				x: 0.5*W-0.5*w,
+		// 				y: cTop-cOffset,
+		// 				opacity: 0
+		// 			}).end({x:0,y:H-h,opacity:0});
+		// 		};
+		// 	}
+		// }
 
-		var moveCss=function(t,l,o,definedCss){
-			return 'top:'+t+'px;left:'+l+'px;opacity:'+o+';'+definedCss;
-		}
+		// var moveCss=function(t,l,o,definedCss){
+		// 	return 'top:'+t+'px;left:'+l+'px;opacity:'+o+';'+definedCss;
+		// }
 
-		document.getElementById('bird01').set = function(set,w,h,W,H){
-			set.begin({x:0,y:0.5*H-0.5*h}).then({
-				per: 0.2,
-				x: 0,
-				y: 0.5*H-0.5*h,
-				opacity:1
-			}).then({
-				per:0.4,
-				x: W,
-				y: 0,
-				opacity: 0
-			}).end({x:0,y:0,opacity:0});
-		};
-		document.getElementById('bird02').set = function(set,w,h,W,H){
-			set.begin({x:0,y:0.5*H-0.5*h}).then({
-				per: 0.4,
-				x: W,
-				y: 0.5*H-0.5*h,
-				opacity:1
-			}).then({
-				per:0.6,
-				x: 0,
-				y: 0,
-				opacity: 0
-			}).end({x:0,y:0,opacity:0});
-		};
-		document.getElementById('tree').set = function(set,w,h,W,H){
-			set.begin({x:0,y:0.5*H-0.5*h}).then({
-				per: 0.6,
-				x: -w,
-				y: 0,
-				opacity:.6
-			}).then({
-				per:0.8,
-				x: 0,
-				y: 0,
-				opacity:.8
-			}).end({x:0,y:0,opacity:.6});
-		};
-		flowerAction('flower01');
-		flowerAction('flower02');
-		flowerAction('flower03');
-		flowerAction('flower04');
-		flowerAction('flower05');
-		flowerAction('flower06');
+		// document.getElementById('bird01').set = function(set,w,h,W,H){
+		// 	set.begin({x:0,y:0.5*H-0.5*h}).then({
+		// 		per: 0.2,
+		// 		x: 0,
+		// 		y: 0.5*H-0.5*h,
+		// 		opacity:1
+		// 	}).then({
+		// 		per:0.4,
+		// 		x: W,
+		// 		y: 0,
+		// 		opacity: 0
+		// 	}).end({x:0,y:0,opacity:0});
+		// };
+		// document.getElementById('bird02').set = function(set,w,h,W,H){
+		// 	set.begin({x:0,y:0.5*H-0.5*h}).then({
+		// 		per: 0.4,
+		// 		x: W,
+		// 		y: 0.5*H-0.5*h,
+		// 		opacity:1
+		// 	}).then({
+		// 		per:0.6,
+		// 		x: 0,
+		// 		y: 0,
+		// 		opacity: 0
+		// 	}).end({x:0,y:0,opacity:0});
+		// };
+		// document.getElementById('tree').set = function(set,w,h,W,H){
+		// 	set.begin({x:0,y:0.5*H-0.5*h}).then({
+		// 		per: 0.6,
+		// 		x: -w,
+		// 		y: 0,
+		// 		opacity:.6
+		// 	}).then({
+		// 		per:0.8,
+		// 		x: 0,
+		// 		y: 0,
+		// 		opacity:.8
+		// 	}).end({x:0,y:0,opacity:.6});
+		// };
+		// flowerAction('flower01');
+		// flowerAction('flower02');
+		// flowerAction('flower03');
+		// flowerAction('flower04');
+		// flowerAction('flower05');
+		// flowerAction('flower06');
 
 
 
-		fadeAction('text01',[0,0.1],60,200,'left:50%;','begin');
-		fadeAction('text02',[0.08,0.2],70,200,'left:40%;');
-		fadeAction('text03',[0.18,0.3],70,200,'right:40%;');
-		fadeAction('text04',[0.28,0.4],70,200,'left:40%;');
-		fadeAction('text05',[0.38,0.5],70,200,'right:40%;');
-		fadeAction('text06',[0.48,0.6],70,200,'left:40%;');
-		fadeAction('text07',[0.58,0.7],70,200,'right:40%;');
-		fadeAction('text08',[0.68,0.8],70,200,'left:40%;');
-		fadeAction('text09',[0.78,0.9],70,200,'right:40%;');
-		fadeAction('text10',[0.88,1.0],140,200,'left:40%;','end');
-		bgAction('bg01',[0,0.1],'bottom',50,'begin');
-		bgAction('bg02',[0.08,0.2],'bottom',50);
-		bgAction('bg03',[0.18,0.3],'bottom',50);
-		bgAction('bg04',[0.28,0.4],'bottom',50);
-		bgAction('bg05',[0.38,0.5],'bottom',50);
-		bgAction('bg06',[0.48,0.6],'bottom',50);
-		bgAction('bg07',[0.58,0.7],'bottom',50);
-		bgAction('bg08',[0.68,0.8],'bottom',50);
-		bgAction('bg09',[0.78,0.9],'bottom',50);
-		bgAction('bg10',[0.88,1.0],'bottom',50,'end');
-		bgAction('sun',[0,0.2],'bottom',document.body.offsetHeight,'begin');
+		// fadeAction('text01',[0,0.1],60,200,'left:50%;','begin');
+		// fadeAction('text02',[0.08,0.2],70,200,'left:40%;');
+		// fadeAction('text03',[0.18,0.3],70,200,'right:40%;');
+		// fadeAction('text04',[0.28,0.4],70,200,'left:40%;');
+		// fadeAction('text05',[0.38,0.5],70,200,'right:40%;');
+		// fadeAction('text06',[0.48,0.6],70,200,'left:40%;');
+		// fadeAction('text07',[0.58,0.7],70,200,'right:40%;');
+		// fadeAction('text08',[0.68,0.8],70,200,'left:40%;');
+		// fadeAction('text09',[0.78,0.9],70,200,'right:40%;');
+		// fadeAction('text10',[0.88,1.0],140,200,'left:40%;','end');
+		// bgAction('bg01',[0,0.1],'bottom',50,'begin');
+		// bgAction('bg02',[0.08,0.2],'bottom',50);
+		// bgAction('bg03',[0.18,0.3],'bottom',50);
+		// bgAction('bg04',[0.28,0.4],'bottom',50);
+		// bgAction('bg05',[0.38,0.5],'bottom',50);
+		// bgAction('bg06',[0.48,0.6],'bottom',50);
+		// bgAction('bg07',[0.58,0.7],'bottom',50);
+		// bgAction('bg08',[0.68,0.8],'bottom',50);
+		// bgAction('bg09',[0.78,0.9],'bottom',50);
+		// bgAction('bg10',[0.88,1.0],'bottom',50,'end');
+		// bgAction('sun',[0,0.2],'bottom',document.body.offsetHeight,'begin');
 
 
 	</script>
