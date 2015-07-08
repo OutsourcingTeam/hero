@@ -13,7 +13,7 @@ section{position:absolute;top:0;right:0;bottom:0;left:0;}
 ----------------------------------------------------------------*/
 .page1{position:relative;
 	width:100%;height:100%;overflow:hidden;
-	background:#f1f1f1 url(images/bg.png) 0 0 repeat;
+	/*background:url(images/bg.png);*/
 }
 .page1 .p1-bg{
 	position:absolute;left:50%;bottom:5%;
@@ -430,7 +430,7 @@ section{position:absolute;top:0;right:0;bottom:0;left:0;}
 .page2{position:relative;
 	width:100%;height:1000%;
 	margin:0 auto;
-	background:url(images/bg.png) 0 0 repeat;
+	/*background:url(images/bg.png) 0 0 repeat;*/
 }
 /*text*/
 .text{
@@ -469,7 +469,8 @@ section{position:absolute;top:0;right:0;bottom:0;left:0;}
 	background:url(images/team.png) 0 0 no-repeat;
 }
 .page2 img{position:absolute;opacity:0;}
-.page2 .p2-bg{position:absolute;display:block;
+.page2 .p2-bg{
+	position:absolute;display:block;
 	max-width:640px;
 	left:50%;margin-left:-320px;
 	width:100%;opacity:0;

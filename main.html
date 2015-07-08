@@ -37,12 +37,14 @@
 		left: 0;
 		top: 0;
 	}
+
+	#bg01{opacity:1;}
 </style>
 	<div id="container">
 		<div class="cover">
 			
 		</div>
-		<section>
+		<section data-bg="url(css/images/bg.png);">
 			<div class="page1" id="page1">
 	            <img src="images/1.png" class="p1-bg" />
 
@@ -66,7 +68,7 @@
 	            <div class="h5-info h5-info02">工具型<b></b></div>
 	        </div>
 	    </section>
-		<section>
+		<section data-bg="url(css/images/bg.png);">
 			<div class="page2">
 
 
@@ -201,71 +203,142 @@
 
 		var bgAction=function(id,pArray,cPositon,cOffset,edge){
 			var el=document.getElementById(id);
-			if(edge=="begin"){
+			if(edge=='begin'){
 				el.style.cssText=fadeCss(document.body.offsetHeight-el.offsetHeight,1,'');
 			}
 
-			el.run=function(per,dir){
-				var fixedTop = el.parentNode.parentNode.scrollTop;
-				var cPositon=fixedTop+document.body.offsetHeight-el.offsetHeight;//底部
+			el.set = function(set,w,h,W,H){
+				set.begin({x:0,y:H-h}).then({
+					per: pArray[0],
+					x: 0,
+					y: H-h,
+					opacity:1
+				}).then({
+					per:pArray[1]-0.01,
+					x: 0,
+					y: H-h-cOffset,
+					opacity: 0.3
+				}).then({
+					per:pArray[1],
+					x: 0,
+					y: H-h-cOffset,
+					opacity: 0
+				}).end({x:0,y:H-h,opacity:0});
+			};
+			
 
-				var ratio;
-				if(per>pArray[0] && per<pArray[1]){
-					ratio=(pArray[1]-per)/(pArray[1]-pArray[0]);
-					el.style.cssText=fadeCss(cPositon-(1-ratio)*cOffset,ratio+0.1);
-				}else{
-					el.style.cssText=fadeCss(0,0);
-				}
-				
-			}
+			// if(edge=="begin"){
+			// 	el.style.cssText=fadeCss(document.body.offsetHeight-el.offsetHeight,1,'');
+			// }
+			// el.run=function(per,dir){
+			// 	var fixedTop = el.parentNode.parentNode.scrollTop;
+			// 	var cPositon=fixedTop+document.body.offsetHeight-el.offsetHeight;//底部
+
+			// 	var ratio;
+
+
+			// 	if(per>pArray[0] && per<pArray[1]){
+			// 		ratio=(pArray[1]-per)/(pArray[1]-pArray[0]);
+			// 		el.style.cssText=fadeCss(cPositon-(1-ratio)*cOffset,ratio+0.1);
+			// 	}else{
+			// 		el.style.cssText=fadeCss(0,0);
+			// 	}				
+			// }
 		}
 
 		var fadeAction=function(id,pArray,cTop,cOffset,definedCss,edge){
 			var el=document.getElementById(id);
 			if(edge=='begin'){
 				el.style.cssText=fadeCss(cTop,1,definedCss);
+				el.set = function(set,w,h,W,H){
+					set.begin({x:0.5*W}).then({
+						per: pArray[0],
+						x: 0.5*W,
+						y: cTop,
+						opacity:1
+					}).then({
+						per:pArray[1],
+						x: 0.5*W,
+						y: cTop-cOffset,
+						opacity: 0
+					}).end({x:0,y:H-h,opacity:0});
+				};
+			}else if(edge=="end"){
+				el.set = function(set,w,h,W,H){
+					set.begin({x:0.5*W-0.5*w}).then({
+						per: pArray[0],
+						x: 0.5*W-0.5*w,
+						y: cTop+cOffset,
+						opacity:0
+					}).then({
+						per:pArray[1],
+						x: 0.5*W-0.5*w,
+						y: cTop,
+						opacity: 1
+					}).end({x:0,y:H-h,opacity:0});
+				};
+			}else{
+				el.set = function(set,w,h,W,H){
+					set.begin({x:0.5*W-0.5*w}).then({
+						per: pArray[0],
+						x: 0.5*W-0.5*w,
+						y: cTop+cOffset,
+						opacity:0
+					}).then({
+						per:(pArray[0]+pArray[1])*0.5,
+						x: 0.5*W-0.5*w,
+						y: cTop,
+						opacity: 1
+					}).then({
+						per:pArray[1],
+						x: 0.5*W-0.5*w,
+						y: cTop-cOffset,
+						opacity: 0
+					}).end({x:0,y:H-h,opacity:0});
+				};
 			}
-			el.run=function(per,dir){
-				var fixedTop = el.parentNode.parentNode.scrollTop;
-				var pMin=[];
-				pMin[0]=(pArray[0]+pArray[1])/2-(pArray[1]-pArray[0])/10;
-				pMin[1]=(pArray[0]+pArray[1])/2+(pArray[1]-pArray[0])/10;
-				var ratio;
-				if(edge=='begin'){
-					if(per<pArray[1]){
-						ratio=(pArray[1]-per)/(pArray[1]-pArray[0]);
-						el.style.cssText=fadeCss(fixedTop+cTop-(1-ratio)*cOffset,ratio+0.1,definedCss);
-					}else{
-						el.style.cssText=fadeCss(0,0,definedCss);
-					}
-				}else if(edge=='end'){
-					if(per>pArray[0] && per<pArray[1]){
-						ratio=(per-pArray[0])/(pArray[1]-pArray[0]);
-						el.style.cssText=fadeCss(fixedTop+cTop+(1-ratio)*cOffset,ratio+0.1,definedCss);
-					}else if(per>=pArray[1]){
-						el.style.cssText=fadeCss(fixedTop+cTop,1,definedCss);
-					}
-					else{
-						el.style.cssText=fadeCss(0,0,definedCss);
-					}
-				}else{
+			// el.run=function(per,dir){
+			// 	var fixedTop = el.parentNode.parentNode.scrollTop;
+			// 	var pMin=[];
+			// 	pMin[0]=(pArray[0]+pArray[1])/2-(pArray[1]-pArray[0])/10;
+			// 	pMin[1]=(pArray[0]+pArray[1])/2+(pArray[1]-pArray[0])/10;
+			// 	var ratio;
+			// 	if(edge=='begin'){
+			// 		if(per<pArray[1]){
+			// 			ratio=(pArray[1]-per)/(pArray[1]-pArray[0]);
+			// 			el.style.cssText=fadeCss(fixedTop+cTop-(1-ratio)*cOffset,ratio+0.1,definedCss);
+			// 		}else{
+			// 			el.style.cssText=fadeCss(0,0,definedCss);
+			// 		}
+
+			// 	}else if(edge=='end'){
+			// 		if(per>pArray[0] && per<pArray[1]){
+			// 			ratio=(per-pArray[0])/(pArray[1]-pArray[0]);
+			// 			el.style.cssText=fadeCss(fixedTop+cTop+(1-ratio)*cOffset,ratio+0.1,definedCss);
+			// 		}else if(per>=pArray[1]){
+			// 			el.style.cssText=fadeCss(fixedTop+cTop,1,definedCss);
+			// 		}
+			// 		else{
+			// 			el.style.cssText=fadeCss(0,0,definedCss);
+			// 		}
+			// 	}else{
 					
-					if(per>pArray[0] && per<pMin[0]){
-						ratio=(per-pArray[0])/(pMin[0]-pArray[0]);
-						el.style.cssText=fadeCss(fixedTop+cTop+(1-ratio)*cOffset,ratio+0.1,definedCss);
-					}
-					else if(per>=pMin[0] && per<=pMin[1]){
-						el.style.cssText=fadeCss(fixedTop+cTop,1,definedCss);
-					}
-					else if(per>pMin[1] && per<pArray[1]){
-						ratio=(pArray[1]-per)/(pArray[1]-pMin[1]);
-						el.style.cssText=fadeCss(fixedTop+cTop-(1-ratio)*cOffset,ratio+0.1,definedCss);
-					}
-					else{
-						el.style.cssText=fadeCss(0,0,definedCss);
-					}
-				}
-			}
+			// 		if(per>pArray[0] && per<pMin[0]){
+			// 			ratio=(per-pArray[0])/(pMin[0]-pArray[0]);
+			// 			el.style.cssText=fadeCss(fixedTop+cTop+(1-ratio)*cOffset,ratio+0.1,definedCss);
+			// 		}
+			// 		else if(per>=pMin[0] && per<=pMin[1]){
+			// 			el.style.cssText=fadeCss(fixedTop+cTop,1,definedCss);
+			// 		}
+			// 		else if(per>pMin[1] && per<pArray[1]){
+			// 			ratio=(pArray[1]-per)/(pArray[1]-pMin[1]);
+			// 			el.style.cssText=fadeCss(fixedTop+cTop-(1-ratio)*cOffset,ratio+0.1,definedCss);
+			// 		}
+			// 		else{
+			// 			el.style.cssText=fadeCss(0,0,definedCss);
+			// 		}
+			// 	}
+			// }
 		}
 
 		// var cloud=document.getElementById('cloud');
@@ -317,10 +390,10 @@
 		bgAction('bg08',[0.68,0.8],'bottom',50);
 		bgAction('bg09',[0.78,0.9],'bottom',50);
 		bgAction('bg10',[0.88,1.0],'bottom',50,'end');
-		bgAction('sun',[0,0.2],'bottom',800,'begin');
+		bgAction('sun',[0,0.2],'bottom',document.body.offsetHeight,'begin');
 
-		moveAction('bird01',[0.2,0.4],'left');
-		moveAction('bird02',[0.4,0.6],'right');
+		// moveAction('bird01',[0.2,0.4],'left');
+		// moveAction('bird02',[0.4,0.6],'right');
 
 	</script>
 	<script src="js/slide.js"></script>
