@@ -43,7 +43,7 @@
 		<div class="cover">
 			
 		</div>
-		<section data-bg="url(css/images/bg.png);">
+		<!-- <section data-bg="url(css/images/bg.png);">
 			<div class="page1" id="page1">
 	            <img src="images/1.png" class="p1-bg" />
 
@@ -66,7 +66,7 @@
 	            <div class="h5-info h5-info01">定制型<b></b></div>
 	            <div class="h5-info h5-info02">工具型<b></b></div>
 	        </div>
-	    </section>
+	    </section> -->
 		<section data-bg="url(css/images/bg.png);">
 			<div class="page2">
 
@@ -83,13 +83,18 @@
 		        <img class="p2-bg run" id="bg10" src="images/p2-2.png" />
 
 		        <img class="p2-sun run" id="sun" src="images/sun.png" />
-		        <!-- <img class="flower " src="images/flower.png" /> -->
 		        <img class="bird run" id="bird01" src="images/bird.png" />
 		        <img class="bird run" id="bird02" src="images/crane-n.png" />
-		        <img class="bird run" id="tree" src="images/tree.png" />
-		        <!-- <img class="crane" src="images/crane.png" /> -->
-		        <!-- <img src="images/cloud.png" class="run" id="cloud" /> -->
-
+		        <div class="run" id="tree">
+		        	<img class="tree" src="images/tree.png" />
+		        	<img class="run flower" id="flower01" src="images/flower.png" />
+		        	<img class="run flower" id="flower02" src="images/flower.png" />
+		        	<img class="run flower" id="flower03" src="images/flower.png" />
+		        	<img class="run flower" id="flower04" src="images/flower.png" />
+		        	<img class="run flower" id="flower05" src="images/flower.png" />
+		        	<img class="run flower" id="flower06" src="images/flower.png" />
+		        </div>
+		        
 				
 		        <p class="text run" id="text01">
 		            <em>定制</em>
@@ -189,7 +194,7 @@
 			ready: function(){
 				console.log( "ready" );
 				setTimeout(function(){
-					document.getElementById('page1').classList.add('active');
+					// document.getElementById('page1').classList.add('active');
 				},1000);
 			}
 		};
@@ -199,6 +204,7 @@
 		var fadeCss=function(t,o,definedCss){
 			return 'top:'+t+'px;opacity:'+o+';'+definedCss;
 		}
+
 
 		var bgAction=function(id,pArray,cPositon,cOffset,edge){
 			var el=document.getElementById(id);
@@ -225,24 +231,22 @@
 				}).end({x:0,y:H-h,opacity:0});
 			};
 			
+		}
+		var flowerAction=function(id){
+			var el=document.getElementById(id);
 
-			// if(edge=="begin"){
-			// 	el.style.cssText=fadeCss(document.body.offsetHeight-el.offsetHeight,1,'');
-			// }
-			// el.run=function(per,dir){
-			// 	var fixedTop = el.parentNode.parentNode.scrollTop;
-			// 	var cPositon=fixedTop+document.body.offsetHeight-el.offsetHeight;//底部
-
-			// 	var ratio;
-
-
-			// 	if(per>pArray[0] && per<pArray[1]){
-			// 		ratio=(pArray[1]-per)/(pArray[1]-pArray[0]);
-			// 		el.style.cssText=fadeCss(cPositon-(1-ratio)*cOffset,ratio+0.1);
-			// 	}else{
-			// 		el.style.cssText=fadeCss(0,0);
-			// 	}				
-			// }
+			el.set = function(set,w,h,W,H){
+				set.begin({scale:0}).then({
+					per:.8,
+					opacity:.3,
+					scale:0
+				}).then({
+					per:.9,
+					opacity:.8,
+					scale:1
+				}).end({scale:1,opacity:.7});
+			};
+			
 		}
 
 		var fadeAction=function(id,pArray,cTop,cOffset,definedCss,edge){
@@ -296,78 +300,59 @@
 					}).end({x:0,y:H-h,opacity:0});
 				};
 			}
-			// el.run=function(per,dir){
-			// 	var fixedTop = el.parentNode.parentNode.scrollTop;
-			// 	var pMin=[];
-			// 	pMin[0]=(pArray[0]+pArray[1])/2-(pArray[1]-pArray[0])/10;
-			// 	pMin[1]=(pArray[0]+pArray[1])/2+(pArray[1]-pArray[0])/10;
-			// 	var ratio;
-			// 	if(edge=='begin'){
-			// 		if(per<pArray[1]){
-			// 			ratio=(pArray[1]-per)/(pArray[1]-pArray[0]);
-			// 			el.style.cssText=fadeCss(fixedTop+cTop-(1-ratio)*cOffset,ratio+0.1,definedCss);
-			// 		}else{
-			// 			el.style.cssText=fadeCss(0,0,definedCss);
-			// 		}
-
-			// 	}else if(edge=='end'){
-			// 		if(per>pArray[0] && per<pArray[1]){
-			// 			ratio=(per-pArray[0])/(pArray[1]-pArray[0]);
-			// 			el.style.cssText=fadeCss(fixedTop+cTop+(1-ratio)*cOffset,ratio+0.1,definedCss);
-			// 		}else if(per>=pArray[1]){
-			// 			el.style.cssText=fadeCss(fixedTop+cTop,1,definedCss);
-			// 		}
-			// 		else{
-			// 			el.style.cssText=fadeCss(0,0,definedCss);
-			// 		}
-			// 	}else{
-					
-			// 		if(per>pArray[0] && per<pMin[0]){
-			// 			ratio=(per-pArray[0])/(pMin[0]-pArray[0]);
-			// 			el.style.cssText=fadeCss(fixedTop+cTop+(1-ratio)*cOffset,ratio+0.1,definedCss);
-			// 		}
-			// 		else if(per>=pMin[0] && per<=pMin[1]){
-			// 			el.style.cssText=fadeCss(fixedTop+cTop,1,definedCss);
-			// 		}
-			// 		else if(per>pMin[1] && per<pArray[1]){
-			// 			ratio=(pArray[1]-per)/(pArray[1]-pMin[1]);
-			// 			el.style.cssText=fadeCss(fixedTop+cTop-(1-ratio)*cOffset,ratio+0.1,definedCss);
-			// 		}
-			// 		else{
-			// 			el.style.cssText=fadeCss(0,0,definedCss);
-			// 		}
-			// 	}
-			// }
 		}
-
-		// var cloud=document.getElementById('cloud');
-		// cloud.style.cssText=fadeCss(cloud.parentNode.parentNode.scrollTop,1,'');
-		// cloud.run=function(per,dir){
-		// 	var fixedTop = this.parentNode.parentNode.scrollTop;
-		// 	this.style.cssText=fadeCss(fixedTop,1,'');
-		// }
 
 		var moveCss=function(t,l,o,definedCss){
 			return 'top:'+t+'px;left:'+l+'px;opacity:'+o+';'+definedCss;
 		}
 
-		var moveAction=function(id,pArray,direction){
-			var el=document.getElementById(id);
-			el.run=function(per,dir){
-				var fixedTop = el.parentNode.parentNode.scrollTop;
+		document.getElementById('bird01').set = function(set,w,h,W,H){
+			set.begin({x:0,y:0.5*H-0.5*h}).then({
+				per: 0.2,
+				x: 0,
+				y: 0.5*H-0.5*h,
+				opacity:1
+			}).then({
+				per:0.4,
+				x: W,
+				y: 0,
+				opacity: 0
+			}).end({x:0,y:0,opacity:0});
+		};
+		document.getElementById('bird02').set = function(set,w,h,W,H){
+			set.begin({x:0,y:0.5*H-0.5*h}).then({
+				per: 0.4,
+				x: W,
+				y: 0.5*H-0.5*h,
+				opacity:1
+			}).then({
+				per:0.6,
+				x: 0,
+				y: 0,
+				opacity: 0
+			}).end({x:0,y:0,opacity:0});
+		};
+		document.getElementById('tree').set = function(set,w,h,W,H){
+			set.begin({x:0,y:0.5*H-0.5*h}).then({
+				per: 0.6,
+				x: -w,
+				y: 0,
+				opacity:.6
+			}).then({
+				per:0.8,
+				x: 0,
+				y: 0,
+				opacity:.8
+			}).end({x:0,y:0,opacity:.6});
+		};
+		flowerAction('flower01');
+		flowerAction('flower02');
+		flowerAction('flower03');
+		flowerAction('flower04');
+		flowerAction('flower05');
+		flowerAction('flower06');
 
-				if(per>pArray[0] && per<pArray[1]){
-					ratio=(pArray[1]-per)/(pArray[1]-pArray[0]);
-					if(direction=="left"){
-						el.style.cssText=moveCss(fixedTop+300*ratio,document.body.offsetWidth*(0.9-ratio),0.5+ratio);
-					}else if(direction=="right"){
-						el.style.cssText=moveCss(fixedTop+300*ratio,document.body.offsetWidth*(0.1+ratio),0.5+ratio);
-					}
-				}else{
-					el.style.cssText=moveCss(0,0,0);
-				}
-			}
-		}
+
 
 		fadeAction('text01',[0,0.1],60,200,'left:50%;','begin');
 		fadeAction('text02',[0.08,0.2],70,200,'left:40%;');
@@ -378,7 +363,7 @@
 		fadeAction('text07',[0.58,0.7],70,200,'right:40%;');
 		fadeAction('text08',[0.68,0.8],70,200,'left:40%;');
 		fadeAction('text09',[0.78,0.9],70,200,'right:40%;');
-		fadeAction('text10',[0.88,1.0],70,200,'left:40%;','end');
+		fadeAction('text10',[0.88,1.0],140,200,'left:40%;','end');
 		bgAction('bg01',[0,0.1],'bottom',50,'begin');
 		bgAction('bg02',[0.08,0.2],'bottom',50);
 		bgAction('bg03',[0.18,0.3],'bottom',50);
@@ -391,8 +376,6 @@
 		bgAction('bg10',[0.88,1.0],'bottom',50,'end');
 		bgAction('sun',[0,0.2],'bottom',document.body.offsetHeight,'begin');
 
-		// moveAction('bird01',[0.2,0.4],'left');
-		// moveAction('bird02',[0.4,0.6],'right');
 
 	</script>
 	<script src="js/slide.js"></script>
