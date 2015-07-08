@@ -220,6 +220,8 @@
 				r.filter = r.filter || function(per){return true};
 				if( r.filter(per) ){
 					r.run(per, dir);
+				}else{
+					r.style.cssText = "";
 				}
 			}else if( typeof r.set === "function" ){
 				var trace = [],
@@ -266,6 +268,8 @@
 				var per = _this.scrollTop == (sh-ch) ? 1 : _this.scrollTop / (sh-ch);
 				if( r.filter(per) ){
 					r.run( per, dir);
+				}else{
+					r.style.cssText = "";
 				}
 			}
 		});
