@@ -43,35 +43,52 @@
 		<div class="cover">
 			
 		</div>
-		<!-- <section data-bg="url(css/images/bg.png);">
+		<section data-bg="url(css/images/bg.png);">
 			<div class="page1" id="page1">
 	            <img src="images/1.png" class="p1-bg" />
-
 	            <div class="logo">
-	                <div class="h5-logo"></div>
+	                <img class="h5-logo" src="images/h5.png"></img>
 	                <div class="circle"></div>
-	                <h3><span>英</span><span>雄</span><span>榜</span></h3>
+	                <h3>
+	                	<img src="images/ying.png" />
+	                	<img src="images/xiong.png" />
+	                	<img src="images/bang.png" />
+	                </h3>
 	            </div>
-	            <p class="slogan">
-	                <span>玉皇大帝“张小龙”放出</span>
-	                <span>微信之后，</span>
-	                <span>H5成为炙手可热营销法宝</span>
-	                <span>于是江湖上</span>
-	                <span>便有了以H5谋生的团队</span>
-	                <span>大大小小上百个</span>
-	                <span>山头林立</span>
-	                <span>分为<em>定制</em>和<em>工具</em></span>
-	                <span>两大派系</span>
-	            </p>
+	            <div class="slogan"><b></b></div>
+
 	            <div class="h5-info h5-info01">定制型<b></b></div>
 	            <div class="h5-info h5-info02">工具型<b></b></div>
 	        </div>
-	    </section> -->
+	    </section>
 		<section data-bg="url(css/images/bg.png);">
 			<div class="page2">
 
-
-				<img class="p2-bg run" id="bg01" src="images/p2-1.png" />
+				<div class="text run" id="text01">
+					<img class="p2-bg"  src="images/p2-2.png" />
+					<img class="p2-text pRight" src="images/team.png" />
+				</div>
+				<div class="text run" id="text02">
+					<img class="p2-bg"  src="images/p2-1.png" />
+					<img class="p2-text pLeft" src="images/team.png" />
+				</div>
+				<div class="text run" id="text03">
+					<img class="p2-bg"  src="images/p2-2.png" />
+					<img class="p2-text pRight" src="images/team.png" />
+				</div>
+				<div class="text run" id="text04">
+					<img class="p2-bg"  src="images/p2-1.png" />
+					<img class="p2-text pLeft" src="images/team.png" />
+				</div>
+				<div class="text run" id="text05">
+					<img class="p2-bg"  src="images/p2-2.png" />
+					<img class="p2-text pRight" src="images/team.png" />
+				</div>
+				<div class="text run" id="text06">
+					<img class="p2-bg"  src="images/p2-1.png" />
+					<img class="p2-text pLeft" src="images/team.png" />
+				</div>
+				<!-- <img class="p2-bg run" id="bg01" src="images/p2-1.png" />
 		        <img class="p2-bg run" id="bg02" src="images/p2-2.png" />
 		        <img class="p2-bg run" id="bg03" src="images/p2-1.png" />
 		        <img class="p2-bg run" id="bg04" src="images/p2-2.png" />
@@ -182,7 +199,7 @@
 		            <span>团队人数：10人以上</span>
 		            <span>成名之作</span>
 		            <span>斯巴鲁</span>
-		        </p>
+		        </p> -->
 		        
 		    </div>
 	    </section>
@@ -194,185 +211,190 @@
 			ready: function(){
 				console.log( "ready" );
 				setTimeout(function(){
-					// document.getElementById('page1').classList.add('active');
+					document.getElementById('page1').classList.add('active');
 				},1000);
 			}
 		};
 
 
 
-		var fadeCss=function(t,o,definedCss){
-			return 'top:'+t+'px;opacity:'+o+';'+definedCss;
-		}
+		// var fadeCss=function(t,o,definedCss){
+		// 	return 'top:'+t+'px;opacity:'+o+';'+definedCss;
+		// }
 
 
 		var bgAction=function(id,pArray,cPositon,cOffset,edge){
 			var el=document.getElementById(id);
-			if(edge=='begin'){
-				el.style.cssText=fadeCss(document.body.offsetHeight-el.offsetHeight,1,'');
-			}
-
 			el.set = function(set,w,h,W,H){
 				set.begin({
 					per: pArray[0],
 					x: 0,
 					y: H-h,
-					opacity:1
+					opacity:1,
+					scale:1
 				}).then({
 					per:pArray[1]-0.01,
 					x: 0,
 					y: H-h-cOffset,
-					opacity: 0.3
+					opacity: 0.3,
+					scale:0.8
 				}).end({per:pArray[1],
 					x: 0,
 					y: H-h-cOffset,
-					opacity: 0});
-			};
-			
-		}
-		var flowerAction=function(id){
-			var el=document.getElementById(id);
-
-			el.set = function(set,w,h,W,H){
-				set.begin({
-					per:.8,
-					opacity:.3,
-					scale:0
-				}).end({
-					per:.9,
-					opacity:.8,
-					scale:1
+					opacity: 0,
+					scale:0.8
 				});
 			};
+		}
+		bgAction('text01',[0,0.15],'bottom',50);
+		bgAction('text02',[0.1,0.25],'bottom',50);
+		bgAction('text03',[0.2,0.35],'bottom',50);
+		bgAction('text04',[0.3,0.45],'bottom',50);
+		bgAction('text05',[0.4,0.55],'bottom',50);
+		bgAction('text06',[0.5,0.65],'bottom',50);
+		// var flowerAction=function(id){
+		// 	var el=document.getElementById(id);
+
+		// 	el.set = function(set,w,h,W,H){
+		// 		set.begin({
+		// 			per:.8,
+		// 			opacity:.3,
+		// 			scale:0
+		// 		}).end({
+		// 			per:.9,
+		// 			opacity:.8,
+		// 			scale:1
+		// 		});
+		// 	};
 			
-		}
+		// }
 
-		var fadeAction=function(id,pArray,cTop,cOffset,definedCss,edge){
-			var el=document.getElementById(id);
-			if(edge=='begin'){
-				el.style.cssText=fadeCss(cTop,1,definedCss);
-				el.set = function(set,w,h,W,H){
-					set.begin({
-						per: pArray[0],
-						x: 0.5*W,
-						y: cTop,
-						opacity:1
-					}).end({
-						per:pArray[1],
-						x: 0.5*W,
-						y: cTop-cOffset,
-						opacity: 0
-					});
-				};
-			}else if(edge=="end"){
-				el.set = function(set,w,h,W,H){
-					set.begin({
-						per: pArray[0],
-						x: 0.5*W-0.5*w,
-						y: cTop+cOffset,
-						opacity:0
-					}).end({
-						per:pArray[1],
-						x: 0.5*W-0.5*w,
-						y: cTop,
-						opacity: 1
-					});
-				};
-			}else{
-				el.set = function(set,w,h,W,H){
-					set.begin({
-						per: pArray[0],
-						x: 0.5*W-0.5*w,
-						y: cTop+cOffset,
-						opacity:0
-					}).then({
-						per:(pArray[0]+pArray[1])*0.5,
-						x: 0.5*W-0.5*w,
-						y: cTop,
-						opacity: 1
-					}).end({
-						per:pArray[1],
-						x: 0.5*W-0.5*w,
-						y: cTop-cOffset,
-						opacity: 0
-					});
-				};
-			}
-		}
+		// var fadeAction=function(id,pArray,cTop,cOffset,definedCss,edge){
+		// 	var el=document.getElementById(id);
+		// 	if(edge=='begin'){
+		// 		el.style.cssText=fadeCss(cTop,1,definedCss);
+		// 		el.set = function(set,w,h,W,H){
+		// 			set.begin({
+		// 				per: pArray[0],
+		// 				x: 0.5*W,
+		// 				y: cTop,
+		// 				opacity:1
+		// 			}).end({
+		// 				per:pArray[1],
+		// 				x: 0.5*W,
+		// 				y: cTop-cOffset,
+		// 				opacity: 0
+		// 			});
+		// 		};
+		// 	}else if(edge=="end"){
+		// 		el.set = function(set,w,h,W,H){
+		// 			set.begin({
+		// 				per: pArray[0],
+		// 				x: 0.5*W-0.5*w,
+		// 				y: cTop+cOffset,
+		// 				opacity:0
+		// 			}).end({
+		// 				per:pArray[1],
+		// 				x: 0.5*W-0.5*w,
+		// 				y: cTop,
+		// 				opacity: 1
+		// 			});
+		// 		};
+		// 	}else{
+		// 		el.set = function(set,w,h,W,H){
+		// 			set.begin({
+		// 				per: pArray[0],
+		// 				x: 0.5*W-0.5*w,
+		// 				y: cTop+cOffset,
+		// 				opacity:0
+		// 			}).then({
+		// 				per:(pArray[0]+pArray[1])*0.5,
+		// 				x: 0.5*W-0.5*w,
+		// 				y: cTop,
+		// 				opacity: 1
+		// 			}).end({
+		// 				per:pArray[1],
+		// 				x: 0.5*W-0.5*w,
+		// 				y: cTop-cOffset,
+		// 				opacity: 0
+		// 			});
+		// 		};
+		// 	}
+		// }
 
-		var moveCss=function(t,l,o,definedCss){
-			return 'top:'+t+'px;left:'+l+'px;opacity:'+o+';'+definedCss;
-		}
+		// var moveCss=function(t,l,o,definedCss){
+		// 	return 'top:'+t+'px;left:'+l+'px;opacity:'+o+';'+definedCss;
+		// }
 
-		document.getElementById('bird01').set = function(set,w,h,W,H){
-			set.begin({
-				per: 0.2,
-				x: 0,
-				y: 0.5*H-0.5*h,
-				opacity:1
-			}).end({
-				per:0.4,
-				x: W,
-				y: 0,
-				opacity: 0
-			});
-		};
-		document.getElementById('bird02').set = function(set,w,h,W,H){
-			set.begin({
-				per: 0.4,
-				x: W,
-				y: 0.5*H-0.5*h,
-				opacity:1
-			}).end({
-				per:0.6,
-				x: 0,
-				y: 0,
-				opacity: 0
-			});
-		};
-		document.getElementById('tree').set = function(set,w,h,W,H){
-			set.begin({
-				per: 0.6,
-				x: -w,
-				y: 0,
-				opacity:.6
-			}).end({
-				per:0.8,
-				x: 0,
-				y: 0,
-				opacity:.8
-			});
-		};
-		flowerAction('flower01');
-		flowerAction('flower02');
-		flowerAction('flower03');
-		flowerAction('flower04');
-		flowerAction('flower05');
-		flowerAction('flower06');
+		// document.getElementById('bird01').set = function(set,w,h,W,H){
+		// 	set.begin({
+		// 		per: 0.2,
+		// 		x: 0,
+		// 		y: 0.5*H-0.5*h,
+		// 		opacity:1
+		// 	}).end({
+		// 		per:0.4,
+		// 		x: W,
+		// 		y: 0,
+		// 		opacity: 0
+		// 	});
+		// };
+		// document.getElementById('bird02').set = function(set,w,h,W,H){
+		// 	set.begin({
+		// 		per: 0.4,
+		// 		x: W,
+		// 		y: 0.5*H-0.5*h,
+		// 		opacity:1
+		// 	}).end({
+		// 		per:0.6,
+		// 		x: 0,
+		// 		y: 0,
+		// 		opacity: 0
+		// 	});
+		// };
+		// document.getElementById('tree').set = function(set,w,h,W,H){
+		// 	set.begin({
+		// 		per: 0.6,
+		// 		x: -w,
+		// 		y: 0,
+		// 		opacity:.6
+		// 	}).end({
+		// 		per:0.8,
+		// 		x: 0,
+		// 		y: 0,
+		// 		opacity:.8
+		// 	});
+		// };
+		// flowerAction('flower01');
+		// flowerAction('flower02');
+		// flowerAction('flower03');
+		// flowerAction('flower04');
+		// flowerAction('flower05');
+		// flowerAction('flower06');
 
 
 
-		fadeAction('text01',[0,0.1],60,200,'left:50%;','begin');
-		fadeAction('text02',[0.08,0.2],70,200,'left:40%;');
-		fadeAction('text03',[0.18,0.3],70,200,'right:40%;');
-		fadeAction('text04',[0.28,0.4],70,200,'left:40%;');
-		fadeAction('text05',[0.38,0.5],70,200,'right:40%;');
-		fadeAction('text06',[0.48,0.6],70,200,'left:40%;');
-		fadeAction('text07',[0.58,0.7],70,200,'right:40%;');
-		fadeAction('text08',[0.68,0.8],70,200,'left:40%;');
-		fadeAction('text09',[0.78,0.9],70,200,'right:40%;');
-		fadeAction('text10',[0.88,1.0],140,200,'left:40%;','end');
-		bgAction('bg01',[0,0.1],'bottom',50,'begin');
-		bgAction('bg02',[0.08,0.2],'bottom',50);
-		bgAction('bg03',[0.18,0.3],'bottom',50);
-		bgAction('bg04',[0.28,0.4],'bottom',50);
-		bgAction('bg05',[0.38,0.5],'bottom',50);
-		bgAction('bg06',[0.48,0.6],'bottom',50);
-		bgAction('bg07',[0.58,0.7],'bottom',50);
-		bgAction('bg08',[0.68,0.8],'bottom',50);
-		bgAction('bg09',[0.78,0.9],'bottom',50);
-		bgAction('bg10',[0.88,1.0],'bottom',50,'end');
-		bgAction('sun',[0,0.2],'bottom',document.body.offsetHeight,'begin');
+		// fadeAction('text01',[0,0.1],60,200,'left:50%;','begin');
+		// fadeAction('text02',[0.08,0.2],70,200,'left:40%;');
+		// fadeAction('text03',[0.18,0.3],70,200,'right:40%;');
+		// fadeAction('text04',[0.28,0.4],70,200,'left:40%;');
+		// fadeAction('text05',[0.38,0.5],70,200,'right:40%;');
+		// fadeAction('text06',[0.48,0.6],70,200,'left:40%;');
+		// fadeAction('text07',[0.58,0.7],70,200,'right:40%;');
+		// fadeAction('text08',[0.68,0.8],70,200,'left:40%;');
+		// fadeAction('text09',[0.78,0.9],70,200,'right:40%;');
+		// fadeAction('text10',[0.88,1.0],140,200,'left:40%;','end');
+		// bgAction('bg01',[0,0.1],'bottom',50,'begin');
+		// bgAction('bg02',[0.08,0.2],'bottom',50);
+		// bgAction('bg03',[0.18,0.3],'bottom',50);
+		// bgAction('bg04',[0.28,0.4],'bottom',50);
+		// bgAction('bg05',[0.38,0.5],'bottom',50);
+		// bgAction('bg06',[0.48,0.6],'bottom',50);
+		// bgAction('bg07',[0.58,0.7],'bottom',50);
+		// bgAction('bg08',[0.68,0.8],'bottom',50);
+		// bgAction('bg09',[0.78,0.9],'bottom',50);
+		// bgAction('bg10',[0.88,1.0],'bottom',50,'end');
+		// bgAction('sun',[0,0.2],'bottom',document.body.offsetHeight,'begin');
 
 
 	</script>
