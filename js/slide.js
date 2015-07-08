@@ -239,12 +239,17 @@
 								rate = (per - prev.per) / (next.per - prev.per),
 								_x = (prev.x+(next.x-prev.x)*rate) || 0,
 								_y = (prev.y+(next.y-prev.y)*rate) + sections[current_index].scrollTop || 0,
-								_o = (prev.opacity+(next.opacity-prev.opacity)*rate);
+								_o = (prev.opacity+(next.opacity-prev.opacity)*rate),
+								_s = (prev.scale+(next.scale-prev.scale)*rate),
+								_r = (prev.rotate+(next.rotate-prev.rotate)*rate),
+
+								_s = isNaN(_s) ? 1 : _s;
+								_r = isNaN(_r) ? 0 : _r;
 
 							var cssText = 
-								"-webkit-transform: translate3d("+_x+"px, "+_y+"px, 0);"
-								+"transform: translate3d("+_x+"px, "+_y+"px, 0);"
-								+"opacity: " + (isNaN(_o) ? 1 : _o)+ ";";
+								"-webkit-transform: scale("+_s+") translate3d("+_x+"px, "+_y+"px, 0) rotate("+_r+"deg);"
+								+"transform: scale("+_s+") translate3d("+_x+"px, "+_y+"px, 0) rotate("+_r+"deg);"
+								+ ( isNaN(_o) ? ("opacity: " + _o+ ";") : "" );
 							this.style.cssText = cssText;
 							return ;
 						}

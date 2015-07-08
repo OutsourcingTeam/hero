@@ -182,21 +182,34 @@
 		*	W,H: 屏幕宽高
 		*/
 		document.getElementById('logo2').set = function(set,w,h,W,H){
-			set.begin({x:0,y:0}).then({
+			set.begin({x:0,y:0,rotate: 0, scale:1}).then({
 				per: .2,
 				x: w-W,
-				y: 0
+				y: 300,
+				rotate: 180,
+				scale: .5
 			}).then({
 				per: .5,
-				x: 0,
-				y: 300,
-				opacity: 1
+				x: -100,
+				y: 200,
+				opacity: 1,
+				rotate: 360,
+				scale: 1
+			}).then({
+				per: .7,
+				x: -100,
+				y: 200,
+				opacity: 1,
+				rotate: 240,
+				scale: 1.5
 			}).then({
 				per: .8,
-				x: -200,
-				y: 0,
-				opacity:.2
-			}).end({x:w-W,y:H-h});
+				x: -100,
+				y: 200,
+				opacity:.2,
+				rotate: 120,
+				scale: 1
+			}).end({x:w-W,y:H-h,rotate:0, scale:1});
 		};
 	</script>
 	<script src="js/slide.js"></script>
