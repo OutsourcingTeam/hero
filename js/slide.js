@@ -249,7 +249,7 @@
 							var cssText = 
 								"-webkit-transform: scale("+_s+") translate3d("+_x+"px, "+_y+"px, 0) rotate("+_r+"deg);"
 								+"transform: scale("+_s+") translate3d("+_x+"px, "+_y+"px, 0) rotate("+_r+"deg);"
-								+ ( isNaN(_o) ? ("opacity: " + _o+ ";") : "" );
+								+ ( isNaN(_o) ? "" : ("opacity: " + _o+ ";") );
 							this.style.cssText = cssText;
 							return ;
 						}
