@@ -121,7 +121,6 @@
 	    </section>
 	    <section data-bg="url(css/images/bg.png);">
 	    	<div class="page3">
-	    		<!-- <img src="images/gongju.png" id="pt00" /> -->
 	    		<div class="text run" id="tx00">
 					<img class="p2-bg"  src="images/p3-sun.png" />
 					<img class="p2-text pTop" src="images/gongju.png" />
@@ -135,22 +134,22 @@
 						<img class="p3-text run" id="pt04" src="images/team.png" />
 					</div>
 				</div>
-				<div class="boat" id="boat">
-					<img class="p3-boat run" id="p3-boat" src="images/boat.png" />
-					<div>
-						<img class="p3-text run" id="pt05" src="images/team.png" />
-						<img class="p3-text run" id="pt06" src="images/team.png" />
-						<img class="p3-text run" id="pt07" src="images/team.png" />
-					</div>
+				<div class="boat run" id="boat">
+					<img class="water" src="images/water.png" />
+					<img class="p3-boat run" id="p3boat" src="images/boat.png" />
 				</div>
-				<!-- <div class="boat">
-					<img class="p3-boat run" id="p3-boat" src="" />
-					<div>
-						<img class="p3-text run" id="pt08" src="images/team.png" />
-						<img class="p3-text run" id="pt09" src="images/team.png" />
-						<img class="p3-text run" id="pt00" src="images/team.png" />
-					</div>
-				</div> -->
+				<img class="p3-tx run" id="pt05" src="images/team.png" />
+				<img class="p3-tx run" id="pt06" src="images/team.png" />
+				<img class="p3-tx run" id="pt07" src="images/team.png" />
+
+				<div class="grass run" id="grass">
+					<img class="water" src="images/water.png" />
+					<img class="run p3-grass" id="p3grass" src="images/flowers.png" />
+				</div>
+
+				<img class="p3-tx run" id="pt08" src="images/team.png" />
+				<img class="p3-tx run" id="pt09" src="images/team.png" />
+				<img class="p3-tx run" id="pt10" src="images/team.png" />
 	    	</div>
 	    </section>
 
@@ -447,7 +446,88 @@
 		ptAction('pt04',[0.30,0.4,0.5]);
 		
 
+		document.getElementById('boat').set=function(set,w,h,W,H){
+			set.begin({
+				per: 0.3,
+				y: H-h,
+				opacity:0.5
+			}).end({
+				per:0.7,
+				y:H-h,
+				opacity:1
+			});
+		};
+		document.getElementById('p3boat').set=function(set,w,h,W,H){
+			set.begin({
+				per: 0.3,
+				x:W+w,
+				opacity:1
+			}).end({
+				per:0.7,
+				x:-w,
+				opacity:1
+			});
+		};
+		var ptAction02=function(id,pArray){
+			var el=document.getElementById(id);
+			el.set=function(set,w,h,W,H){
+				set.begin({
+					per: pArray[0],
+					y:H-h,
+					opacity:0
+				}).then({
+					per:pArray[1],
+					y:(H-h)*0.5,
+					opacity:1
+				}).end({
+					per:pArray[2],
+					y:(H-h)*0.4,
+					opacity:0
+				});
+			};
+		}
+		ptAction02('pt05',[0.4,0.45,0.5]);
+		ptAction02('pt06',[0.5,0.55,0.6]);
+		ptAction02('pt07',[0.6,0.65,0.7]);
 
+		document.getElementById('grass').set=function(set,w,h,W,H){
+			set.begin({
+				per: 0.7,
+				y: H-h,
+				opacity:0.8
+			}).end({
+				per:1,
+				y:H-h,
+				opacity:1
+			});
+		};
+		document.getElementById('p3grass').set=function(set,w,h,W,H){
+			set.begin({
+				per: 0.7,
+				rotate:0
+			}).then({
+				per:0.75,
+				rotate:15
+			}).then({
+				per:0.8,
+				rotate:0
+			}).then({
+				per:0.85,
+				rotate:-15
+			}).then({
+				per:0.9,
+				rotate:0
+			}).then({
+				per:0.95,
+				rotate:15
+			}).end({
+				per:1,
+				rotate:0
+			});
+		};
+		ptAction02('pt08',[0.75,0.8,0.85]);
+		ptAction02('pt09',[0.85,0.9,0.95]);
+		ptAction02('pt10',[0.92,0.97,1]);
 	</script>
 	<script src="js/slide.js"></script>
 </body>
