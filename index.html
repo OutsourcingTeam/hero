@@ -1,127 +1,143 @@
 ﻿<!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <meta charset="utf-8">
-	<title>网站开发</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-
-	<link rel="stylesheet" href="css/reset.css" />
+    <meta charset="UTF-8">
+    <meta content="240" name="MobileOptimized">
+    <meta content="YES" name="apple-touch-fullscreen">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="max-age=3600" http-equiv="Cache-Control">
+    <meta content="width=device-width, initial-scale=1.0,  minimum-scale=1.0, maximum-scale=1.0" name="viewport">
+    <title>英雄榜</title>
     <link rel="stylesheet" href="css/style.css" />
-	
+<style>
+    ::-webkit-scrollbar{display: none;}
+    html,body{margin: 0;padding: 0;overflow: hidden;height: 100%;}
+    #container{height: 100%;width: 100%;position: relative;}
+    #container > section,#container .cover{position: absolute;padding: 0;top: 0;height: 100%;width: 100%;overflow-y: scroll; transition: all .3s ease-in 0s;-webkit-transition: all .3s ease-in 0s;}
+    #container .cover{background:url(images/bg-cover.jpg) repeat-x; background-size:auto 100%;z-index: 4;right: 0;transition: transform .5s linear 0s;-webkit-transition: -webkit-transform .5s linear 0s;}
+    #container .cover .loading{position: absolute;left: 50%; width: 30%; margin-left: -15%; top: 40%; color: #b6701b;}
+    #container .cover.init .loading{display: none;}
+    #text00, #sun01{opacity:1; transform: translate3d(0,300px,0);-webkit-transform:translate3d(0,300px,0);}
+</style>
 </head>
 <body>
-
-    <section>
-        <div class="page1" id="page1">
-            <img src="images/1.png" class="p1-bg" />
-
-            <div class="logo">
-                <div class="h5-logo"></div>
-                <div class="circle"></div>
-                <h3><span>英</span><span>雄</span><span>榜</span></h3>
-            </div>
-            <p class="slogan">
-                <span>玉皇大帝“张小龙”放出</span>
-                <span>微信之后，</span>
-                <span>H5成为炙手可热营销法宝</span>
-                <span>于是江湖上</span>
-                <span>便有了以H5谋生的团队</span>
-                <span>大大小小上百个</span>
-                <span>山头林立</span>
-                <span>分为<em>定制</em>和<em>工具</em></span>
-                <span>两大派系</span>
-            </p>
-            <div class="h5-info h5-info01">定制型<b></b></div>
-            <div class="h5-info h5-info02">工具型<b></b></div>
+    <div id="container">
+        <div class="cover">
+            <img src="images/loading.gif" class="loading">
+            <!-- <img src="images/info-cover.png" alt="英雄榜只收录最有影响力的h5企业和团队;发送到邮箱h5@h5rank.com提交您的团队吧.如果觉得信息有误，也可发邮件申诉。"> -->
         </div>
-    </section>
+        <section data-bg="url(css/images/bg.png);" data-next="-1">
+            <div class="page1" id="page1">
+                <img src="images/1.png" class="p1-bg" />
+                <div class="logo">
+                    <img class="h5-logo" src="images/h5.png"></img>
+                    <div class="circle"></div>
+                    <h3>
+                        <img src="images/ying.png" />
+                        <img src="images/xiong.png" />
+                        <img src="images/bang.png" />
+                    </h3>
+                </div>
+                <div class="slogan"><b></b></div>
 
-<!--     <br /><br /><br /><br />
+                <div class="h5-info h5-info01 outstanding" onclick="transform_set(1)">定制型<b></b></div>
+                <div class="h5-info h5-info02 outstanding" onclick="transform_set(2)">工具型<b></b></div>
+            </div>
+        </section>
+        <section data-bg="url(css/images/bg.png);" data-next="-1" class="with-cover from-top">
+            <div class="page2">
+                <div class="text run" id="text00">
+                    <img class="p2-bg"  src="images/p2-1.png" />
+                    <img class="p2-text pTop" src="images/dingzhi.png" />
+                </div>
+                <div class="text run" id="text01">
+                    <img class="p2-bg"  src="images/p2-2.png" />
+                    <img class="p2-text pRight" src="images/team.png" />
+                </div>
+                <div class="text run" id="text02">
+                    <img class="p2-bg"  src="images/p2-1.png" />
+                    <img class="p2-text pLeft" src="images/team.png" />
+                </div>
+                <div class="text run" id="text03">
+                    <img class="p2-bg"  src="images/p2-2.png" />
+                    <img class="p2-text pRight" src="images/team.png" />
+                </div>
+                <div class="text run" id="text04">
+                    <img class="p2-bg"  src="images/p2-1.png" />
+                    <img class="p2-text pLeft" src="images/team.png" />
+                </div>
+                <div class="text run" id="text05">
+                    <img class="p2-bg"  src="images/p2-2.png" />
+                    <img class="p2-text pRight" src="images/team.png" />
+                </div>
+                <div class="text run" id="text06">
+                    <img class="p2-bg"  src="images/p2-1.png" />
+                    <img class="p2-text pLeft" src="images/team.png" />
+                </div>
+                <div class="text run" id="text07">
+                    <img class="p2-bg"  src="images/p2-2.png" />
+                    <img class="p2-text pRight" src="images/team.png" />
+                </div>
+                <div class="text run" id="text08">
+                    <img class="p2-bg"  src="images/p2-1.png" />
+                    <img class="p2-text pLeft" src="images/team.png" />
+                </div>
+                <div class="text run" id="text09">
+                    <img class="p2-bg"  src="images/p2-2.png" />
+                    <img class="p2-text pRight" src="images/team.png" />
+                </div>
 
-    <section class="page2 active">
-        <p class="text">
-            <em>定制</em>
-            <span>以高质量的精品画面打动用户</span>
-            <span>缺陷是价格高昂</span>
-            <span>制作时间周期长</span>
-        </p>
-        <p class="text">
-            <strong>团队名称<b><img src="images/teamelogo.png" /></b></strong>
-            <span>价格参考：10w起</span>
-            <span>案例综述：不详</span>
-            <span>特点：整合营销巨擘，以外包为主</span>
-            <span>团队人数：10人以上</span>
-            <span>成名之作</span>
-            <span>斯巴鲁</span>
-        </p>
-        <img class="p2-bg" src="images/p2-1.png" />
-        <img class="p2-bg" src="images/p2-2.png" />
-        <img class="p2-sun" src="images/sun.png" />
-        <img class="flower" src="images/flower.png" />
-        <img class="bird" src="images/bird.png" />
-        <img class="bird" src="images/tree.png" />
-        <img class="crane" src="images/crane.png" />
-    </section>
+                <img class="p2-sun run" id="sun01" src="images/sun.png" /> 
+                <img class="bird run" id="bird01" src="images/bird.png" />
+                <img class="bird run" id="bird02" src="images/crane-n.png" />
+                <img class="bird run" id="bird03" src="images/crane-x.png" />
+                <div class="run" id="tree">
+                    <img class="tree" src="images/tree.png" />
+                    <img class="run flower" id="flower01" src="images/flower.png" />
+                    <img class="run flower" id="flower02" src="images/flower.png" />
+                    <img class="run flower" id="flower03" src="images/flower.png" />
+                    <img class="run flower" id="flower04" src="images/flower.png" />
+                    <img class="run flower" id="flower05" src="images/flower.png" />
+                    <img class="run flower" id="flower06" src="images/flower.png" />
+                </div>    
+            </div>
+        </section>
+        <section data-bg="url(css/images/bg.png);" data-prev="-2" data-next="-2" class="with-cover from-top">
+            <div class="page3">
+                <div class="text run" id="tx00">
+                    <img class="p2-bg"  src="images/p3-sun.png" />
+                    <img class="p2-text pTop" src="images/gongju.png" />
+                </div>
+                <div class="run" id="tx01">
+                    <img class="p3-bg"  src="images/p3-bg.png" />
+                    <div>
+                        <img class="p3-text run" id="pt01" src="images/team.png" />
+                        <img class="p3-text run" id="pt02" src="images/team.png" />
+                        <img class="p3-text run" id="pt03" src="images/team.png" />
+                        <img class="p3-text run" id="pt04" src="images/team.png" />
+                    </div>
+                </div>
+                <div class="boat run" id="boat">
+                    <img class="water" src="images/water.png" />
+                    <img class="p3-boat run" id="p3boat" src="images/boat.png" />
+                </div>
+                <img class="p3-tx run" id="pt05" src="images/team.png" />
+                <img class="p3-tx run" id="pt06" src="images/team.png" />
+                <img class="p3-tx run" id="pt07" src="images/team.png" />
 
-    <br /><br /><br /><br />
+                <div class="grass run" id="grass">
+                    <img class="water" src="images/water.png" />
+                    <img class="run p3-grass" id="p3grass" src="images/flowers.png" />
+                </div>
 
-    <section class="page3">
-        <p class="text">
-            <em>工具型</em>
-            <span>以批量化模板自动化创建H5的</span>
-            <span>工具而闻名于世</span>
-            <span>其特点是量大、便宜、速度快</span>
-        </p>
-        <p class="text">
-            <strong>团队名称<b><img src="images/teamelogo.png" /></b></strong>
-            <span>价格参考：10w起</span>
-            <span>案例综述：不详</span>
-            <span>特点：整合营销巨擘，以外包为主</span>
-            <span>团队人数：10人以上</span>
-            <span>成名之作</span>
-            <span>斯巴鲁</span>
-        </p>
-        <img src="images/p3-1.png" />
-        <img src="images/p3-2.png" />
-        <img src="images/p3-3.png" />
-        <img src="images/boat.png" />
-        <img src="images/flowers.png" />
-    </section> -->
+                <img class="p3-tx run" id="pt08" src="images/team.png" />
+                <img class="p3-tx run" id="pt09" src="images/team.png" />
+                <img class="p3-tx run" id="pt10" src="images/team.png" />
+            </div>
+        </section>
 
-</div>
-
-<script type="text/javascript" src="js/jquery.min.js"></script>
-<script type="text/javascript">
-    setTimeout(function(){
-        $('#page1').addClass('active');
-    },1000)
-
-    
-    $(window).scroll(function(){
-        var sT=$(this).scrollTop();
-        var t1=50,t2=200;
-        var y1=0,y2=1600;
-        var y=t1+(t2-t1)*(y2-sT)/(y2-y1);
-        var middle=y1+(y2-y1)/2;
-        var o;
-        if(sT<middle && sT>y1){
-            o=(sT-y1)/((y2-y1)/2);
-        }else if(sT>middle && sT<y2){
-            o=(y2-sT)/((y2-y1)/2);
-        }else if(sT==middle){
-            o=1;
-        }else{
-            o=0;
-        }
-        console.log(sT,y,o);
-        $('#slide1').css({'top':y,'opacity':o});
-    });
-
-
-
-
-
-</script>
-
+    </div>
+    <script src="js/script.min.js"></script>
+    <script src="js/slide.min.js"></script>
 </body>
 </html>

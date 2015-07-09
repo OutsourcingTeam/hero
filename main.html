@@ -1,534 +1,142 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="UTF-8">
+    <meta charset="UTF-8">
     <meta content="240" name="MobileOptimized">
     <meta content="YES" name="apple-touch-fullscreen">
     <meta content="yes" name="apple-mobile-web-app-capable">
-	<meta content="max-age=3600" http-equiv="Cache-Control">
+    <meta content="max-age=3600" http-equiv="Cache-Control">
     <meta content="width=device-width, initial-scale=1.0,  minimum-scale=1.0, maximum-scale=1.0" name="viewport">
-	<title>slides</title>
-	<link rel="stylesheet" href="css/reset.css" />
+    <title>英雄榜</title>
     <link rel="stylesheet" href="css/style.css" />
 <style>
-	::-webkit-scrollbar{display: none;}
-	html,body{margin: 0;padding: 0;overflow: hidden;height: 100%;}
-	#container{height: 100%;width: 100%;position: relative;}
-	#container > section,#container .cover{position: absolute;padding: 0;top: 0;height: 100%;width: 100%;overflow-y: scroll; transition: all .3s ease-in 0s;-webkit-transition: all .3s ease-in 0s;}
-	#container .cover{background-color: #f60;z-index: 4;right: 0;transition: transform .5s linear 0s;-webkit-transition: -webkit-transform .5s linear 0s;}
+    ::-webkit-scrollbar{display: none;}
+    html,body{margin: 0;padding: 0;overflow: hidden;height: 100%;}
+    #container{height: 100%;width: 100%;position: relative;}
+    #container > section,#container .cover{position: absolute;padding: 0;top: 0;height: 100%;width: 100%;overflow-y: scroll; transition: all .3s ease-in 0s;-webkit-transition: all .3s ease-in 0s;}
+    #container .cover{background:url(images/bg-cover.jpg) repeat-x; background-size:auto 100%;z-index: 4;right: 0;transition: transform .5s linear 0s;-webkit-transition: -webkit-transform .5s linear 0s;}
+    #container .cover .loading{position: absolute;left: 50%; width: 30%; margin-left: -15%; top: 40%; color: #b6701b;}
+    #container .cover.init .loading{display: none;}
 </style>
 </head>
 <body>
+    <div id="container">
+        <div class="cover">
+            <img src="images/loading.gif" class="loading">
+            <!-- <img src="images/info-cover.png" alt="英雄榜只收录最有影响力的h5企业和团队;发送到邮箱h5@h5rank.com提交您的团队吧.如果觉得信息有误，也可发邮件申诉。"> -->
+        </div>
+        <section data-bg="url(css/images/bg.png);" data-next="-1">
+            <div class="page1" id="page1">
+                <img src="images/1.png" class="p1-bg" />
+                <div class="logo">
+                    <img class="h5-logo" src="images/h5.png"></img>
+                    <div class="circle"></div>
+                    <h3>
+                        <img src="images/ying.png" />
+                        <img src="images/xiong.png" />
+                        <img src="images/bang.png" />
+                    </h3>
+                </div>
+                <div class="slogan"><b></b></div>
 
-<style>
-	section:nth-child(2n+1){
-		background: red;
-	}
-	section:nth-child(2n){
-		background: #0f0;
-	}
-	.center{
-		text-align: center;
-		font: normal 2rem/1.5 "Microsoft Yahei";
-	}
-	#logo{
-		font: bold 3rem/1.2 "Arial";
-		position: absolute;
-		left: 0;
-		top: 0;
-	}
+                <div class="h5-info h5-info01 outstanding" onclick="transform_set(1)">定制型<b></b></div>
+                <div class="h5-info h5-info02 outstanding" onclick="transform_set(2)">工具型<b></b></div>
+            </div>
+        </section>
+        <section data-bg="url(css/images/bg.png);" data-next="-1" class="with-cover from-top">
+            <div class="page2">
+                <div class="text run" id="text00">
+                    <img class="p2-bg"  src="images/p2-1.png" />
+                    <img class="p2-text pTop" src="images/dingzhi.png" />
+                </div>
+                <div class="text run" id="text01">
+                    <img class="p2-bg"  src="images/p2-2.png" />
+                    <img class="p2-text pRight" src="images/team.png" />
+                </div>
+                <div class="text run" id="text02">
+                    <img class="p2-bg"  src="images/p2-1.png" />
+                    <img class="p2-text pLeft" src="images/team.png" />
+                </div>
+                <div class="text run" id="text03">
+                    <img class="p2-bg"  src="images/p2-2.png" />
+                    <img class="p2-text pRight" src="images/team.png" />
+                </div>
+                <div class="text run" id="text04">
+                    <img class="p2-bg"  src="images/p2-1.png" />
+                    <img class="p2-text pLeft" src="images/team.png" />
+                </div>
+                <div class="text run" id="text05">
+                    <img class="p2-bg"  src="images/p2-2.png" />
+                    <img class="p2-text pRight" src="images/team.png" />
+                </div>
+                <div class="text run" id="text06">
+                    <img class="p2-bg"  src="images/p2-1.png" />
+                    <img class="p2-text pLeft" src="images/team.png" />
+                </div>
+                <div class="text run" id="text07">
+                    <img class="p2-bg"  src="images/p2-2.png" />
+                    <img class="p2-text pRight" src="images/team.png" />
+                </div>
+                <div class="text run" id="text08">
+                    <img class="p2-bg"  src="images/p2-1.png" />
+                    <img class="p2-text pLeft" src="images/team.png" />
+                </div>
+                <div class="text run" id="text09">
+                    <img class="p2-bg"  src="images/p2-2.png" />
+                    <img class="p2-text pRight" src="images/team.png" />
+                </div>
 
-</style>
-	<div id="container">
-		<div class="cover">
-			
-		</div>
-		<section data-bg="url(css/images/bg.png);">
-			<div class="page1" id="page1">
-	            <img src="images/1.png" class="p1-bg" />
-	            <div class="logo">
-	                <img class="h5-logo" src="images/h5.png"></img>
-	                <div class="circle"></div>
-	                <h3>
-	                	<img src="images/ying.png" />
-	                	<img src="images/xiong.png" />
-	                	<img src="images/bang.png" />
-	                </h3>
-	            </div>
-	            <div class="slogan"><b></b></div>
+                <img class="p2-sun run" id="sun01" src="images/sun.png" /> 
+                <img class="bird run" id="bird01" src="images/bird.png" />
+                <img class="bird run" id="bird02" src="images/crane-n.png" />
+                <img class="bird run" id="bird03" src="images/crane-x.png" />
+                <div class="run" id="tree">
+                    <img class="tree" src="images/tree.png" />
+                    <img class="run flower" id="flower01" src="images/flower.png" />
+                    <img class="run flower" id="flower02" src="images/flower.png" />
+                    <img class="run flower" id="flower03" src="images/flower.png" />
+                    <img class="run flower" id="flower04" src="images/flower.png" />
+                    <img class="run flower" id="flower05" src="images/flower.png" />
+                    <img class="run flower" id="flower06" src="images/flower.png" />
+                </div>    
+            </div>
+        </section>
+        <section data-bg="url(css/images/bg.png);" data-prev="-2" data-next="-2" class="with-cover from-top">
+            <div class="page3">
+                <div class="text run" id="tx00">
+                    <img class="p2-bg"  src="images/p3-sun.png" />
+                    <img class="p2-text pTop" src="images/gongju.png" />
+                </div>
+                <div class="run" id="tx01">
+                    <img class="p3-bg"  src="images/p3-bg.png" />
+                    <div>
+                        <img class="p3-text run" id="pt01" src="images/team.png" />
+                        <img class="p3-text run" id="pt02" src="images/team.png" />
+                        <img class="p3-text run" id="pt03" src="images/team.png" />
+                        <img class="p3-text run" id="pt04" src="images/team.png" />
+                    </div>
+                </div>
+                <div class="boat run" id="boat">
+                    <img class="water" src="images/water.png" />
+                    <img class="p3-boat run" id="p3boat" src="images/boat.png" />
+                </div>
+                <img class="p3-tx run" id="pt05" src="images/team.png" />
+                <img class="p3-tx run" id="pt06" src="images/team.png" />
+                <img class="p3-tx run" id="pt07" src="images/team.png" />
 
-	            <div class="h5-info h5-info01">定制型<b></b></div>
-	            <div class="h5-info h5-info02">工具型<b></b></div>
-	        </div>
-	    </section>
-		<section data-bg="url(css/images/bg.png);">
-			<div class="page2">
-				<div class="text run" id="text00">
-					<img class="p2-bg"  src="images/p2-1.png" />
-					<img class="p2-text pTop" src="images/dingzhi.png" />
-				</div>
-				<div class="text run" id="text01">
-					<img class="p2-bg"  src="images/p2-2.png" />
-					<img class="p2-text pRight" src="images/team.png" />
-				</div>
-				<div class="text run" id="text02">
-					<img class="p2-bg"  src="images/p2-1.png" />
-					<img class="p2-text pLeft" src="images/team.png" />
-				</div>
-				<div class="text run" id="text03">
-					<img class="p2-bg"  src="images/p2-2.png" />
-					<img class="p2-text pRight" src="images/team.png" />
-				</div>
-				<div class="text run" id="text04">
-					<img class="p2-bg"  src="images/p2-1.png" />
-					<img class="p2-text pLeft" src="images/team.png" />
-				</div>
-				<div class="text run" id="text05">
-					<img class="p2-bg"  src="images/p2-2.png" />
-					<img class="p2-text pRight" src="images/team.png" />
-				</div>
-				<div class="text run" id="text06">
-					<img class="p2-bg"  src="images/p2-1.png" />
-					<img class="p2-text pLeft" src="images/team.png" />
-				</div>
-				<div class="text run" id="text07">
-					<img class="p2-bg"  src="images/p2-2.png" />
-					<img class="p2-text pRight" src="images/team.png" />
-				</div>
-				<div class="text run" id="text08">
-					<img class="p2-bg"  src="images/p2-1.png" />
-					<img class="p2-text pLeft" src="images/team.png" />
-				</div>
-				<div class="text run" id="text09">
-					<img class="p2-bg"  src="images/p2-2.png" />
-					<img class="p2-text pRight" src="images/team.png" />
-				</div>
+                <div class="grass run" id="grass">
+                    <img class="water" src="images/water.png" />
+                    <img class="run p3-grass" id="p3grass" src="images/flowers.png" />
+                </div>
 
-		        <img class="p2-sun run" id="sun01" src="images/sun.png" /> 
-		        <img class="bird run" id="bird01" src="images/bird.png" />
-		        <img class="bird run" id="bird02" src="images/crane-n.png" />
-		        <img class="bird run" id="bird03" src="images/crane-x.png" />
-		        <div class="run" id="tree">
-		        	<img class="tree" src="images/tree.png" />
-		        	<img class="run flower" id="flower01" src="images/flower.png" />
-		        	<img class="run flower" id="flower02" src="images/flower.png" />
-		        	<img class="run flower" id="flower03" src="images/flower.png" />
-		        	<img class="run flower" id="flower04" src="images/flower.png" />
-		        	<img class="run flower" id="flower05" src="images/flower.png" />
-		        	<img class="run flower" id="flower06" src="images/flower.png" />
-		        </div>	  
-		    </div>
-	    </section>
-	    <section data-bg="url(css/images/bg.png);">
-	    	<div class="page3">
-	    		<div class="text run" id="tx00">
-					<img class="p2-bg"  src="images/p3-sun.png" />
-					<img class="p2-text pTop" src="images/gongju.png" />
-				</div>
-	    		<div class="run" id="tx01">
-					<img class="p3-bg"  src="images/p3-bg.png" />
-					<div>
-						<img class="p3-text run" id="pt01" src="images/team.png" />
-						<img class="p3-text run" id="pt02" src="images/team.png" />
-						<img class="p3-text run" id="pt03" src="images/team.png" />
-						<img class="p3-text run" id="pt04" src="images/team.png" />
-					</div>
-				</div>
-				<div class="boat run" id="boat">
-					<img class="water" src="images/water.png" />
-					<img class="p3-boat run" id="p3boat" src="images/boat.png" />
-				</div>
-				<img class="p3-tx run" id="pt05" src="images/team.png" />
-				<img class="p3-tx run" id="pt06" src="images/team.png" />
-				<img class="p3-tx run" id="pt07" src="images/team.png" />
+                <img class="p3-tx run" id="pt08" src="images/team.png" />
+                <img class="p3-tx run" id="pt09" src="images/team.png" />
+                <img class="p3-tx run" id="pt10" src="images/team.png" />
+            </div>
+        </section>
 
-				<div class="grass run" id="grass">
-					<img class="water" src="images/water.png" />
-					<img class="run p3-grass" id="p3grass" src="images/flowers.png" />
-				</div>
-
-				<img class="p3-tx run" id="pt08" src="images/team.png" />
-				<img class="p3-tx run" id="pt09" src="images/team.png" />
-				<img class="p3-tx run" id="pt10" src="images/team.png" />
-	    	</div>
-	    </section>
-
-	</div>
-	<script>
-		conf = {
-			all_images : [], //根据每组数据的src属性进行加载判断
-			ready: function(){
-				console.log( "ready" );
-				setTimeout(function(){
-					document.getElementById('page1').classList.add('active');
-				},1000);
-			}
-		};
-		
-
-		var fadeCss=function(t,o,definedCss){
-			return 'top:'+t+'px;opacity:'+o+';';
-		}
-		var bgAction=function(id,pArray,cPositon,cOffset,edge){
-			var el=document.getElementById(id);
-			el.set = function(set,w,h,W,H){
-				set.begin({
-					per: pArray[0],
-					x: 0,
-					y: H+h,
-					opacity:0.1,
-					scale:1
-				}).then({
-					per:pArray[1]-0.08,
-					x: 0,
-					y: H-h,
-					opacity: 1,
-					scale:1
-				}).end({per:pArray[1],
-					x: 0,
-					y: H-h,
-					opacity: 0,
-					scale:.95
-				});
-			};
-		}
-		var text00=document.getElementById('text00');
-		text00.style.cssText=fadeCss(document.body.offsetHeight-text00.offsetHeight,1)
-		text00.set=function(set,w,h,W,H){
-			set.begin({
-				per: 0,
-				x: 0,
-				y: H-h,
-				opacity:1,
-				scale:1
-			}).end({per:0.2,
-				x: 0,
-				y: H-h,
-				opacity: 0,
-				scale:.95
-			});
-		};
-
-		var sun01=document.getElementById('sun01');
-		sun01.style.cssText=fadeCss(document.body.offsetHeight-sun01.offsetHeight,1)
-		sun01.set=function(set,w,h,W,H){
-			set.begin({
-				per: 0,
-				x: 0,
-				y: H-h-100,
-				opacity:1,
-				scale:1
-			}).end({per:0.2,
-				x: 0,
-				y: -h,
-				opacity: 0,
-				scale:1
-			});
-		};
-		
-
-		bgAction('text01',[0.1,0.3],'bottom',50);
-		bgAction('text02',[0.2,0.4],'bottom',50);
-		bgAction('text03',[0.3,0.5],'bottom',50);
-		bgAction('text04',[0.4,0.6],'bottom',50);
-		bgAction('text05',[0.5,0.7],'bottom',50);
-		bgAction('text06',[0.6,0.8],'bottom',50);
-		bgAction('text07',[0.7,0.9],'bottom',50);
-		bgAction('text08',[0.8,1],'bottom',50);
-		document.getElementById('text09').set=function(set,w,h,W,H){
-			set.begin({
-				per: 0.9,
-				x: 0,
-				y: H+h,
-				opacity:0.6,
-				scale:1
-			}).end({
-				per:1,
-				x: 0,
-				y: H-h,
-				opacity: 1,
-				scale:1
-			});
-		};
-
-
-		document.getElementById('bird01').set = function(set,w,h,W,H){
-			set.begin({
-				per: 0.2,
-				x: 0,
-				y: 0.5*H-0.5*h,
-				opacity:1
-			}).end({
-				per:0.4,
-				x: W,
-				y: 0,
-				opacity:1
-			});
-		};
-		document.getElementById('bird02').set = function(set,w,h,W,H){
-			set.begin({
-				per: 0.4,
-				x: W,
-				y: 0.5*H-0.5*h,
-				opacity:1
-			}).then({
-				per: 0.43,
-				x: W*0.84,
-				y: (H-h)*0.43,
-				opacity:0
-			}).then({
-				per: 0.46,
-				x: W*0.70,
-				y: (H-h)*0.36,
-				opacity:1
-			}).then({
-				per: 0.49,
-				x: W*0.56,
-				y: (H-h)*0.29,
-				opacity:0
-			}).then({
-				per: 0.52,
-				x: W*0.42,
-				y: (H-h)*0.22,
-				opacity:1
-			}).then({
-				per: 0.55,
-				x: W*0.28,
-				y: (H-h)*0.15,
-				opacity:0
-			}).then({
-				per: 0.58,
-				x: W*0.14,
-				y: (H-h)*0.08,
-				opacity:1
-			}).end({
-				per:0.6,
-				x: 0,
-				y: 0,
-				opacity:0
-			});
-		};
-		document.getElementById('bird03').set = function(set,w,h,W,H){
-			set.begin({
-				per: 0.4,
-				x: W,
-				y: (H-h),
-				opacity:0
-			}).then({
-				per: 0.43,
-				x: W*0.84,
-				y: (H-h)*0.43,
-				opacity:1
-			}).then({
-				per: 0.46,
-				x: W*0.70,
-				y: (H-h)*0.36,
-				opacity:0
-			}).then({
-				per: 0.49,
-				x: W*0.56,
-				y: (H-h)*0.29,
-				opacity:1
-			}).then({
-				per: 0.52,
-				x: W*0.42,
-				y: (H-h)*0.22,
-				opacity:0
-			}).then({
-				per: 0.55,
-				x: W*0.28,
-				y: (H-h)*0.15,
-				opacity:1
-			}).then({
-				per: 0.58,
-				x: W*0.14,
-				y: (H-h)*0.08,
-				opacity:0
-			}).end({
-				per:0.6,
-				x: 0,
-				y: 0,
-				opacity:1
-			});
-		};
-		document.getElementById('tree').set = function(set,w,h,W,H){
-			set.begin({
-				per: 0.6,
-				x: -w,
-				y: 0,
-				opacity:.6
-			}).then({
-				per: 0.8,
-				x: 0,
-				y: 0,
-				opacity:.6
-			}).end({
-				per:1,
-				x: 0,
-				y: 0,
-				opacity:1
-			});
-		};
-
-		var flowerAction=function(id){
-			var el=document.getElementById(id);
-
-			el.set = function(set,w,h,W,H){
-				set.begin({
-					per:.8,
-					opacity:1,
-					scale:0
-				}).end({
-					per:1,
-					opacity:1,
-					scale:1
-				});
-			};
-		}
-
-		flowerAction('flower01');
-		flowerAction('flower02');
-		flowerAction('flower03');
-		flowerAction('flower04');
-		flowerAction('flower05');
-		flowerAction('flower06');
-
-		//第三屏幕动画
-
-		var tx00=document.getElementById('tx00');
-		tx00.style.cssText=fadeCss(document.body.offsetHeight-tx00.offsetHeight,1)
-		tx00.set=function(set,w,h,W,H){
-			set.begin({
-				per: 0,
-				x: 0,
-				y: H-h,
-				opacity:1,
-				scale:1
-			}).end({per:0.2,
-				x: 0,
-				y: H-h,
-				opacity: 0,
-				scale:.95
-			});
-		};
-		document.getElementById('tx01').set = function(set,w,h,W,H){
-			set.begin({
-				per: 0.1,
-				y: H,
-				opacity:1
-			}).end({
-				per:0.5,
-				y: -h,
-				opacity:1
-			});
-		};
-		var ptAction=function(id,pArray){
-			var el=document.getElementById(id);
-			el.set=function(set,w,h,W,H){
-				set.begin({
-					per: pArray[0],
-					scale:0.5,
-					opacity:0.2
-				}).then({
-					per:pArray[1],
-					scale:1,
-					opacity:1
-				}).end({
-					per:pArray[2],
-					scale:0.5,
-					opacity:0.2
-				});
-			};
-		}
-		ptAction('pt01',[0.1,0.2,0.3]);
-		ptAction('pt02',[0.15,0.25,0.35]);
-		ptAction('pt03',[0.20,0.30,0.40]);
-		ptAction('pt04',[0.30,0.4,0.5]);
-		
-
-		document.getElementById('boat').set=function(set,w,h,W,H){
-			set.begin({
-				per: 0.3,
-				y: H-h,
-				opacity:0.5
-			}).end({
-				per:0.7,
-				y:H-h,
-				opacity:1
-			});
-		};
-		document.getElementById('p3boat').set=function(set,w,h,W,H){
-			set.begin({
-				per: 0.3,
-				x:W+w,
-				opacity:1
-			}).end({
-				per:0.7,
-				x:-w,
-				opacity:1
-			});
-		};
-		var ptAction02=function(id,pArray){
-			var el=document.getElementById(id);
-			el.set=function(set,w,h,W,H){
-				set.begin({
-					per: pArray[0],
-					y:H-h,
-					opacity:0
-				}).then({
-					per:pArray[1],
-					y:(H-h)*0.5,
-					opacity:1
-				}).end({
-					per:pArray[2],
-					y:(H-h)*0.4,
-					opacity:0
-				});
-			};
-		}
-		ptAction02('pt05',[0.4,0.45,0.5]);
-		ptAction02('pt06',[0.5,0.55,0.6]);
-		ptAction02('pt07',[0.6,0.65,0.7]);
-
-		document.getElementById('grass').set=function(set,w,h,W,H){
-			set.begin({
-				per: 0.7,
-				y: H-h,
-				opacity:0.8
-			}).end({
-				per:1,
-				y:H-h,
-				opacity:1
-			});
-		};
-		document.getElementById('p3grass').set=function(set,w,h,W,H){
-			set.begin({
-				per: 0.7,
-				rotate:0
-			}).then({
-				per:0.75,
-				rotate:15
-			}).then({
-				per:0.8,
-				rotate:0
-			}).then({
-				per:0.85,
-				rotate:-15
-			}).then({
-				per:0.9,
-				rotate:0
-			}).then({
-				per:0.95,
-				rotate:15
-			}).end({
-				per:1,
-				rotate:0
-			});
-		};
-		ptAction02('pt08',[0.75,0.8,0.85]);
-		ptAction02('pt09',[0.85,0.9,0.95]);
-		ptAction02('pt10',[0.92,0.97,1]);
-	</script>
-	<script src="js/slide.js"></script>
+    </div>
+    <script src="js/script.min.js"></script>
+    <script src="js/slide.min.js"></script>
 </body>
 </html>
