@@ -344,7 +344,7 @@ section{position:absolute;top:0;right:0;bottom:0;left:0;}
 	max-width:80px;margin-left:-40px;
 }
 
-.bird{opacity:0; 
+.bird{position:absolute;top:0;left:0;opacity:0; 
 		-webkit-transform:scale(2,2);
 		transform:scale(2,2);
 }
@@ -378,7 +378,7 @@ section{position:absolute;top:0;right:0;bottom:0;left:0;}
 		left:0;margin-left:0;
 		opacity:0;
 	}
-	.bird{
+	.bird{position:absolute;top:0;left:0;
 		-webkit-transform:scale(1,1);
 		transform:scale(1,1);
 	}
