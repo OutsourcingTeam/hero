@@ -70,7 +70,7 @@ var $ = function(sel){return document.querySelector(sel);};
     // sun01.style.cssText=fadeCss(document.body.offsetHeight-sun01.offsetHeight,1)
     sun01.set=function(set,w,h,W,H){
         set.begin({
-            per: 0.01,
+            per: 0,
             x: 0,
             y: H-h-100,
             opacity:1,
