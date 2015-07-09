@@ -12,7 +12,7 @@
 <style>
     ::-webkit-scrollbar{display: none;}
     html,body{margin: 0;padding: 0;overflow: hidden;height: 100%;}
-    #container{height: 100%;width: 100%;position: relative;}
+    #container{height: 100%;width: 100%;position: relative; max-width: 640px; margin: 0 auto;}
     #container > section,#container .cover{position: absolute;padding: 0;top: 0;height: 100%;width: 100%;overflow-y: scroll; transition: all .3s ease-in 0s;-webkit-transition: all .3s ease-in 0s;}
     #container .cover{background:url(images/bg-cover.jpg) repeat-x; background-size:auto 100%;z-index: 4;right: 0;transition: transform .5s linear 0s;-webkit-transition: -webkit-transform .5s linear 0s;}
     #container .cover .loading{position: absolute;left: 50%; width: 30%; margin-left: -15%; top: 40%; color: #b6701b;}
