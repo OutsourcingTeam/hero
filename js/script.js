@@ -26,26 +26,36 @@ var $ = function(sel){return document.querySelector(sel);};
     var fadeCss=function(t,o,definedCss){
         return 'top:'+t+'px;opacity:'+o+';';
     }
-    var bgAction=function(id,pArray,cPositon,cOffset,edge){
+    var bgAction=function(id,innerid,pArray,cPositon,cOffset,edge){
         var el=document.getElementById(id);
+        var iel=document.getElementById(innerid);
         el.set = function(set,w,h,W,H){
             set.begin({
                 per: pArray[0],
                 x: 0,
                 y: H+h,
-                opacity:0.1,
-                scale:1
+                opacity:0.1
             }).then({
-                per:pArray[1]-0.08,
+                per:pArray[1]-0.15,
                 x: 0,
                 y: H-h,
-                opacity: 1,
+                opacity: 1
+            }).end({per:pArray[1],
+                x: 0,
+                y: 0,
+                opacity: 0.3
+            });
+        };
+        iel.set = function(set,w,h,W,H){
+            set.begin({
+                per: pArray[0],
+                scale:1
+            }).then({
+                per:pArray[1]-0.15,
                 scale:1
             }).end({per:pArray[1],
                 x: 0,
-                y: H-h,
-                opacity: 0,
-                scale:.95
+                scale:.5
             });
         };
     }
@@ -84,14 +94,14 @@ var $ = function(sel){return document.querySelector(sel);};
     };
     
 
-    bgAction('text01',[0.1,0.3],'bottom',50);
-    bgAction('text02',[0.2,0.4],'bottom',50);
-    bgAction('text03',[0.3,0.5],'bottom',50);
-    bgAction('text04',[0.4,0.6],'bottom',50);
-    bgAction('text05',[0.5,0.7],'bottom',50);
-    bgAction('text06',[0.6,0.8],'bottom',50);
-    bgAction('text07',[0.7,0.9],'bottom',50);
-    bgAction('text08',[0.8,1],'bottom',50);
+    bgAction('text01','ti01',[0.1,0.42],'bottom',50);
+    bgAction('text02','ti02',[0.18,0.50],'bottom',50);
+    bgAction('text03','ti03',[0.26,0.58],'bottom',50);
+    bgAction('text04','ti04',[0.34,0.66],'bottom',50);
+    bgAction('text05','ti05',[0.42,0.74],'bottom',50);
+    bgAction('text06','ti06',[0.60,0.82],'bottom',50);
+    bgAction('text07','ti07',[0.68,0.90],'bottom',50);
+    bgAction('text08','ti08',[0.76,1],'bottom',50);
     document.getElementById('text09').set=function(set,w,h,W,H){
         set.begin({
             per: 0.9,
