@@ -55,20 +55,21 @@
             	sections[i].scrollTop = 0;
             }
             sections.forEach(function(section, index){
-                switch(index){
-                    case i: 
-                        current_index = i;
-                        section.style.cssText = css_model();
-                        break;
-                    case i+1: 
-                        section.style.cssText = css_model(H);
-                        break;
-                    case i-1: 
-                        section.style.cssText = css_model(-H);
-                        break;
-                    default: 
-                        section.style.cssText = css_model( (index > i) ? H : -H ); 
+                if( i === index ){
+                    current_index = i;
+                    sections[i].classList.add("active");
+                    section.style.cssText = css_model();
+                }else if( i < index ){
+                    sections[i].classList.remove("active");
+                    section.style.cssText = css_model(H);
+                }else{
+                    sections[i].classList.remove("active");
+                    section.style.cssText = css_model(-H);
                 }
+            });
+
+            (runs[current_index] || []).forEach(function(r){
+                r.run(0);
             });
 
             holder.innerHTML = "";
@@ -82,7 +83,7 @@
                     + "top:"+(osd.offsetTop-sections[current_index].scrollTop)+"px;"
                     + "cursor:pointer;"
                     ;
-                $.on(label, "click touchstart", function(e){
+                $.on(label, "click touchstart touchend", function(e){
                     e.stopPropagation();
                     e.preventDefault();
                     osd.click && osd.click(); 
@@ -92,7 +93,7 @@
 
             setTimeout(function(){
                 transform_set.running = false;
-            },200);
+            },300);
         }
     };
     transform_set.running = false;
@@ -113,7 +114,51 @@
                 +"height:" + ( Math.ceil( (s.scrollHeight - s.clientHeight) / step ) * step + s.clientHeight ) + "px;"
                 +"background:"+ (bg || "none") + ";";
             s.insertBefore(div, s.firstChild);
-            runs[i] = $(".run", s);
+            runs[i] = $(".run", s).filter(function(r){
+                if( typeof r.set === "function" ){
+                    var trace = [],
+                        set = {
+                            begin: function(d){d.per = d.per || 0;trace.push(d);return this;},
+                            end: function(d){d.per = d.per || 1;trace.push(d);return this;},
+                            then: function(d){trace.push(d);return this;}
+                        },
+                        w = r.offsetWidth,
+                        h = r.offsetHeight,
+                        W = document.documentElement.clientWidth,
+                        H = document.documentElement.clientHeight;
+                    
+                    r.set(set,w,h,W,H);
+
+                    r.filter = function(per){
+                        return per >= trace[0].per && per <= trace[trace.length-1].per;
+                    };
+                    r.run = function(per, dir){
+                        for (var i = 1; i < trace.length; i++) {
+                            if( trace[i-1].per <= per && trace[i].per >= per ){
+                                var prev = trace[i-1], 
+                                    next = trace[i],
+                                    rate = (per - prev.per) / (next.per - prev.per),
+                                    _x = (prev.x+(next.x-prev.x)*rate) || 0,
+                                    _y = (prev.y+(next.y-prev.y)*rate) + sections[current_index].scrollTop || 0,
+                                    _o = (prev.opacity+(next.opacity-prev.opacity)*rate),
+                                    _s = (prev.scale+(next.scale-prev.scale)*rate),
+                                    _r = (prev.rotate+(next.rotate-prev.rotate)*rate),
+
+                                    _s = isNaN(_s) ? 1 : _s;
+                                    _r = isNaN(_r) ? 0 : _r;
+
+                                var cssText = 
+                                    "-webkit-transform: scale("+_s+") translate3d("+_x+"px, "+_y+"px, 0) rotate("+_r+"deg);"
+                                    +"transform: scale("+_s+") translate3d("+_x+"px, "+_y+"px, 0) rotate("+_r+"deg);"
+                                    + ( isNaN(_o) ? "" : ("opacity: " + _o+ ";") );
+                                this.style.cssText = cssText;
+                                return ;
+                            }
+                        };
+                    };
+                }
+                return !!r.run;
+            });
         });
         conf.ready();
     };
@@ -206,54 +251,6 @@
                 r.filter = r.filter || function(per){return true};
                 if( r.filter(per) ){
                     r.run(per, dir);
-                }else{
-                    r.style.cssText = "";
-                }
-            }else if( typeof r.set === "function" ){
-                var trace = [],
-                    set = {
-                        begin: function(d){d.per = d.per || 0;trace.push(d);return this;},
-                        end: function(d){d.per = d.per || 1;trace.push(d);return this;},
-                        then: function(d){trace.push(d);return this;}
-                    },
-                    w = r.offsetWidth,
-                    h = r.offsetHeight,
-                    W = document.documentElement.clientWidth,
-                    H = document.documentElement.clientHeight;
-                
-                r.set(set,w,h,W,H);
-
-                r.filter = function(per){
-                    return per >= trace[0].per && per <= trace[trace.length-1].per;
-                };
-                r.run = function(per, dir){
-                    for (var i = 1; i < trace.length; i++) {
-                        if( trace[i-1].per <= per && trace[i].per >= per ){
-                            var prev = trace[i-1], 
-                                next = trace[i],
-                                rate = (per - prev.per) / (next.per - prev.per),
-                                _x = (prev.x+(next.x-prev.x)*rate) || 0,
-                                _y = (prev.y+(next.y-prev.y)*rate) + sections[current_index].scrollTop || 0,
-                                _o = (prev.opacity+(next.opacity-prev.opacity)*rate),
-                                _s = (prev.scale+(next.scale-prev.scale)*rate),
-                                _r = (prev.rotate+(next.rotate-prev.rotate)*rate),
-
-                                _s = isNaN(_s) ? 1 : _s;
-                                _r = isNaN(_r) ? 0 : _r;
-
-                            var cssText = 
-                                "-webkit-transform: scale("+_s+") translate3d("+_x+"px, "+_y+"px, 0) rotate("+_r+"deg);"
-                                +"transform: scale("+_s+") translate3d("+_x+"px, "+_y+"px, 0) rotate("+_r+"deg);"
-                                + ( isNaN(_o) ? "" : ("opacity: " + _o+ ";") );
-                            this.style.cssText = cssText;
-                            return ;
-                        }
-                    };
-                };
-
-                var per = _this.scrollTop == (sh-ch) ? 1 : _this.scrollTop / (sh-ch);
-                if( r.filter(per) ){
-                    r.run( per, dir);
                 }else{
                     r.style.cssText = "";
                 }
