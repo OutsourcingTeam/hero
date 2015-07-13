@@ -24,15 +24,21 @@
         });
         return $;
     };
+    $.getType = function(el){
+        return Object.prototype.toString.call(el).match(/\[object\s(\w+)\]/)[1];
+    };
 
     // 设置多页切换
     window.transform_set = function(dom, i){
-        if( i === 0 ){return;}
+        if( i === 0 ){
+            return;
+        }
+        var fn = arguments[arguments.length-1];
         var H = document.documentElement.clientHeight;
-        if( "undefined" === typeof i ){
+        if( $.getType(dom) === "HTMLElement" ){
+            i = sections.indexOf(dom) + (i | 0);
+        }else if( $.getType(dom) === "Number" ){
             i = dom | 0;
-        }else if( "number" != typeof dom ){
-            i = sections.indexOf(dom) + i;
         }
         i = Math.min( Math.max( 0, i ), sections.length - 1);
 
@@ -52,9 +58,6 @@
                 transform_set.running = false;
                 return;
             }
-            if( sections[i].classList.contains("from-top") ){
-            	sections[i].scrollTop = 0;
-            }
             sections.forEach(function(section, index){
                 if( i === index ){
                     current_index = i;
@@ -69,8 +72,17 @@
                 }
             });
 
+            // 回调执行
+            if( $.getType(fn) === "Function" ){
+                fn.call( sections[i] );
+            }
+
             (runs[current_index] || []).forEach(function(r){
-                r.run(0);
+                var st = sections[i].scrollTop,
+                    sh = sections[i].scrollHeight,
+                    ch = sections[i].clientHeight,
+                    per = st == (sh-ch) ? 1 : st / (sh-ch);
+                r.run(per);
             });
 
             holder.innerHTML = "";
@@ -228,12 +240,12 @@
         // console.log(ch);
         // console.log(sh);
 
-        if( _this.scrollTop + ch >= sh && e.type !== "touchmove"){
-            var next = Number( _this.getAttribute("data-next") );
-            transform_set(_this, isNaN( next ) ? Math.abs(dir) / (dir||1) : next );
-        }else if(!_this.scrollTop && dir < 0){
+        if(!_this.scrollTop && dir < 0){
             var prev = Number( _this.getAttribute("data-prev") );
             transform_set(_this, isNaN( prev ) ? -1 : prev );
+        }else if( _this.scrollTop + ch >= sh && e.type !== "touchmove"){
+            var next = Number( _this.getAttribute("data-next") );
+            transform_set(_this, isNaN( next ) ? Math.abs(dir) / (dir||1) : next );
         }else{
 
             var osds = $(".outstanding", _this);

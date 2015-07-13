@@ -1,3 +1,6 @@
+;function toTop(){
+    this.scrollTop = 0;
+};
 var $ = function(sel){return document.querySelector(sel);};
     var cover = $(".cover");
     conf = {
