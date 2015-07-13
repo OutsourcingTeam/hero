@@ -27,6 +27,7 @@
 
     // 设置多页切换
     window.transform_set = function(dom, i){
+        if( i === 0 ){return;}
         var H = document.documentElement.clientHeight;
         if( "undefined" === typeof i ){
             i = dom | 0;
@@ -228,9 +229,11 @@
         // console.log(sh);
 
         if( _this.scrollTop + ch >= sh && e.type !== "touchmove"){
-            transform_set(_this, (_this.getAttribute("data-next") | 0) ||  Math.abs(dir) / (dir||1) );
+            var next = Number( _this.getAttribute("data-next") );
+            transform_set(_this, isNaN( next ) ? Math.abs(dir) / (dir||1) : next );
         }else if(!_this.scrollTop && dir < 0){
-            transform_set(_this, (_this.getAttribute("data-prev") | 0) || -1 );
+            var prev = Number( _this.getAttribute("data-prev") );
+            transform_set(_this, isNaN( prev ) ? -1 : prev );
         }else{
 
             var osds = $(".outstanding", _this);

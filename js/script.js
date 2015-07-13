@@ -2,15 +2,24 @@ var $ = function(sel){return document.querySelector(sel);};
     var cover = $(".cover");
     conf = {
         all_images : [
-            {src:"css/images/bg.png"},
+            {src:"css/images/bg.jpg"},
+            {src:"css/images/slogan.png"},
+            {src:"css/images/1.png"},
+            {src:"css/images/2.png"},
+            {src:"css/images/3.png"},
             {src:"images/1.png"},
             {src:"images/h5.png"},
             {src:"images/ying.png"},
             {src:"images/xiong.png"},
             {src:"images/bang.png"},
-            {src:"css/images/slogan.png"},
-            {src:"css/images/1.png"},
-            {src:"css/images/2.png"}
+            {src:"images/p3-bg.png"},
+            {src:"images/p3-sun.png"},
+            {src:"images/flowers.png"},
+            {src:"images/water.png"},
+            {src:"images/p2-1.png"},
+            {src:"images/p2-2.png"},
+            {src:"images/boat.png"},
+            {src:"images/tree.png"}
         ], //根据每组数据的src属性进行加载判断
         ready: function(){
             // cover.classList.add("init");
