@@ -513,6 +513,9 @@ section{position:absolute;top:0;right:0;bottom:0;left:0;}
 	#text00 .pTop{
 		bottom:60%;right:30%;
 	}
+	#tx00 .pTop{
+		bottom:50%;right:30%;
+	}
 }
 
 
