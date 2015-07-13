@@ -394,9 +394,9 @@ var $ = function(sel){return document.querySelector(sel);};
 
     document.getElementById('boat').set=function(set,w,h,W,H){
         set.begin({
-            per: 0.3,
+            per: 0.4,
             y: H-h,
-            opacity:0.5
+            opacity:0.2
         }).end({
             per:0.7,
             y:H-h,
