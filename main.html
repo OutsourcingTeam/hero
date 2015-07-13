@@ -17,6 +17,9 @@
     #container .cover{background:url(images/bg-cover.jpg) repeat-x; background-size:auto 100%;z-index: 4;right: 0;transition: transform .5s linear 0s;-webkit-transition: -webkit-transform .5s linear 0s;}
     #container .cover .loading{position: absolute;left: 50%; width: 30%; margin-left: -15%; top: 40%; color: #b6701b;}
     #container .cover.init .loading{display: none;}
+
+
+    .lastbg{background-size:100% 100%;}
 </style>
 </head>
 <body>
@@ -41,8 +44,8 @@
                 </div>
                 <div class="slogan"><b></b></div>
 
-                <div class="h5-info h5-info01 outstanding" onclick="transform_set(1)">定制型<b></b></div>
-                <div class="h5-info h5-info02 outstanding" onclick="transform_set(2)">工具型<b></b></div>
+                <div class="h5-info h5-info01 outstanding" onclick="transform_set(1)"><b></b></div>
+                <div class="h5-info h5-info02 outstanding" onclick="transform_set(2)"><b></b></div>
             </div>
         </section>
         <section data-bg="url(css/images/bg.png);" data-next="-1" class="with-cover from-top">
@@ -135,6 +138,14 @@
                 <img class="p3-tx run" id="pt09" src="images/team.png" />
                 <img class="p3-tx run" id="pt10" src="images/team.png" />
             </div>
+        </section >
+        <section data-bg="url(css/images/bg.png);">
+        	<img src="images/endbg.jpg"  style="display:block;margin:0 auto;max-width:640px;width:100%;height:100%;"/>
+        	<div class="h5-info h5-info03 outstanding" onclick="transform_set(1)"><b></b></div>
+        </section>
+        <section data-bg="url(css/images/bg.png);">
+        	<img src="images/endbg.jpg"  style="display:block;margin:0 auto;max-width:640px;width:100%;height:100%;"/>
+        	<div class="h5-info h5-info04 outstanding" onclick="transform_set(2)"><b></b></div>
         </section>
 
     </div>

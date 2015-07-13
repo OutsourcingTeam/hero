@@ -139,35 +139,70 @@ var $ = function(sel){return document.querySelector(sel);};
             y: 0.5*H-0.5*h,
             opacity:1
         }).then({
+            per: 0.401,
+            x: W*0.84,
+            y: (H-h)*0.43,
+            opacity:0
+        }).then({
             per: 0.43,
             x: W*0.84,
             y: (H-h)*0.43,
             opacity:0
+        }).then({
+            per: 0.431,
+            x: W*0.70,
+            y: (H-h)*0.36,
+            opacity:1
         }).then({
             per: 0.46,
             x: W*0.70,
             y: (H-h)*0.36,
             opacity:1
         }).then({
+            per: 0.461,
+            x: W*0.56,
+            y: (H-h)*0.29,
+            opacity:0
+        }).then({
             per: 0.49,
             x: W*0.56,
             y: (H-h)*0.29,
             opacity:0
+        }).then({
+            per: 0.491,
+            x: W*0.42,
+            y: (H-h)*0.22,
+            opacity:1
         }).then({
             per: 0.52,
             x: W*0.42,
             y: (H-h)*0.22,
             opacity:1
         }).then({
+            per: 0.521,
+            x: W*0.28,
+            y: (H-h)*0.15,
+            opacity:0
+        }).then({
             per: 0.55,
             x: W*0.28,
             y: (H-h)*0.15,
             opacity:0
         }).then({
+            per: 0.551,
+            x: W*0.14,
+            y: (H-h)*0.08,
+            opacity:1
+        }).then({
             per: 0.58,
             x: W*0.14,
             y: (H-h)*0.08,
             opacity:1
+        }).then({
+            per:0.581,
+            x: 0,
+            y: 0,
+            opacity:0
         }).end({
             per:0.6,
             x: 0,
@@ -182,35 +217,70 @@ var $ = function(sel){return document.querySelector(sel);};
             y: (H-h),
             opacity:0
         }).then({
+            per: 0.401,
+            x: W*0.84,
+            y: (H-h)*0.43,
+            opacity:1
+        }).then({
             per: 0.43,
             x: W*0.84,
             y: (H-h)*0.43,
             opacity:1
+        }).then({
+            per: 0.431,
+            x: W*0.70,
+            y: (H-h)*0.36,
+            opacity:0
         }).then({
             per: 0.46,
             x: W*0.70,
             y: (H-h)*0.36,
             opacity:0
         }).then({
+            per: 0.461,
+            x: W*0.56,
+            y: (H-h)*0.29,
+            opacity:1
+        }).then({
             per: 0.49,
             x: W*0.56,
             y: (H-h)*0.29,
             opacity:1
+        }).then({
+            per: 0.491,
+            x: W*0.42,
+            y: (H-h)*0.22,
+            opacity:0
         }).then({
             per: 0.52,
             x: W*0.42,
             y: (H-h)*0.22,
             opacity:0
         }).then({
+            per: 0.521,
+            x: W*0.28,
+            y: (H-h)*0.15,
+            opacity:1
+        }).then({
             per: 0.55,
             x: W*0.28,
             y: (H-h)*0.15,
             opacity:1
         }).then({
+            per: 0.551,
+            x: W*0.14,
+            y: (H-h)*0.08,
+            opacity:0
+        }).then({
             per: 0.58,
             x: W*0.14,
             y: (H-h)*0.08,
             opacity:0
+        }).then({
+            per:0.581,
+            x: 0,
+            y: 0,
+            opacity:1
         }).end({
             per:0.6,
             x: 0,
