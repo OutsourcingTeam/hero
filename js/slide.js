@@ -203,7 +203,7 @@
     }).on(holder, "touchmove", function(e){
         var touch = e.changedTouches[0],
                 endTy = touch.clientY;
-        run( 1.5*(curTy - endTy), e);
+        run( 3*(curTy - endTy), e);
         curTy = endTy;
     }).on(holder, "touchend", function(e){
         var touch = e.changedTouches[0],
