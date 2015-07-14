@@ -397,8 +397,8 @@ section{position:absolute;top:0;right:0;bottom:0;left:0;}
 }
 
 .bird{position:absolute;top:0;left:0;opacity:0; 
-		-webkit-transform:scale(2,2);
-		transform:scale(2,2);
+		-webkit-transform:scale(4,4);
+		transform:scale(4,4);
 }
 
 
@@ -431,8 +431,8 @@ section{position:absolute;top:0;right:0;bottom:0;left:0;}
 		opacity:0;
 	}
 	.bird{position:absolute;top:0;left:0;
-		-webkit-transform:scale(1,1);
-		transform:scale(1,1);
+		-webkit-transform:scale(2,2);
+		transform:scale(2,2);
 	}
 }
 
