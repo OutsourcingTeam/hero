@@ -2,7 +2,7 @@
     this.scrollTop = 0;
 };
 var $ = function(sel){return document.querySelector(sel);};
-    var cover = $(".cover");
+var cover = $(".cover");
     conf = {
         all_images : [
             {src:"css/images/bg.jpg"},
@@ -26,6 +26,7 @@ var $ = function(sel){return document.querySelector(sel);};
         ], //根据每组数据的src属性进行加载判断
         ready: function(){
             // cover.classList.add("init");
+            playAudio();
             cover.style.cssText = "transform: translate3d("+document.documentElement.clientWidth+"px,0,0);"
             +"-webkit-transform:translate3d("+document.documentElement.clientWidth+"px,0,0);"
             setTimeout(function(){
@@ -477,3 +478,43 @@ var $ = function(sel){return document.querySelector(sel);};
     ptAction02('pt08',[0.75,0.8,0.85]);
     ptAction02('pt09',[0.85,0.9,0.95]);
     ptAction02('pt10',[0.92,0.97,1]);
+
+
+(function(mp3, musicbg){
+
+    var audio = new Audio(mp3),
+        audioHolder = document.createElement("a"),
+        btn = new Image();
+    audio.preload = true;
+    audio.loop = "loop";
+    audio.style.cssText = "display:none;";
+
+    btn.src = musicbg;
+    audioHolder.appendChild( audio );
+    audioHolder.appendChild( btn );
+    audioHolder.href="javascript:void(0);";
+    audioHolder.onclick = function(e){
+        e.stopPropagation();
+        e.preventDefault();
+        if(audio.paused){
+            this.className = "audio-holder playing rotate";
+            audio.play();
+        }else{
+            this.className = "audio-holder paused";
+            audio.pause();
+        }
+    };
+    
+    playAudio = (function(){
+        $("#container").appendChild(audioHolder);
+        audio.play();
+        setTimeout(function(){
+            if( audio.paused ){
+                audioHolder.className = "audio-holder paused";
+            }else{
+                audioHolder.className = "audio-holder playing rotate";
+            }
+        },1000);
+    });
+
+})("http://media.youban.com/gsmp3/mv20120713/134242537926732.mp3","images/musicbg.png");

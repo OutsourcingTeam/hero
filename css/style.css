@@ -592,3 +592,36 @@ section{position:absolute;top:0;right:0;bottom:0;left:0;}
 	}
 }
 
+/*旋转*/
+@keyframes rotate{
+    from{transform:rotate(0deg);}
+    to{transform:rotate(360deg);}
+}
+@-webkit-keyframes rotate{
+    from{-webkit-transform:rotate(0deg);}
+    to{-webkit-transform:rotate(360deg);}
+}
+.rotate{
+    animation-name: rotate;
+    animation-duration: 2s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    -webkit-animation-name: rotate;
+    -webkit-animation-duration: 2s;
+    -webkit-animation-timing-function: linear;
+    -webkit-animation-iteration-count: infinite;
+}
+
+.audio-holder{
+	width: 40px;
+	height: 40px;
+	line-height: 40px;
+	position: absolute; 
+	right: 8px; 
+	top: 8px; 
+	z-index: 200;
+}
+.audio-holder img{
+	width: 100%;
+	height: 100%;
+}
