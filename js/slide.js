@@ -76,7 +76,7 @@
             if( $.getType(fn) === "Function" ){
                 fn.call( sections[i] );
             }
-
+            _scrollTop = sections[i].scrollTop;
             (runs[current_index] || []).forEach(function(r){
                 var st = sections[i].scrollTop,
                     sh = sections[i].scrollHeight,
@@ -173,6 +173,7 @@
                 return !!r.run;
             });
         });
+        _run();
         conf.ready();
     };
     var loaded = 0;
@@ -234,11 +235,14 @@
             sh = _this.scrollHeight;
         scrollTy = st;
 
-        st = _this.scrollTop = _this.scrollTop + dir;
+        _scrollTop = _this.scrollTop + dir;
+        //st = _this.scrollTop = _this.scrollTop + dir;
 
         // console.log(st);
         // console.log(ch);
         // console.log(sh);
+
+        _dir = dir;
 
         if(!_this.scrollTop && dir < 0){
             var prev = Number( _this.getAttribute("data-prev") );
@@ -247,30 +251,45 @@
             var next = Number( _this.getAttribute("data-next") );
             transform_set(_this, isNaN( next ) ? Math.abs(dir) / (dir||1) : next );
         }else{
+            
+        }
+    }
 
-            var osds = $(".outstanding", _this);
-            $("label",holder).forEach(function(label, i){
-                osd = osds[i];
-                label.style.cssText = "position:absolute;"
-                    + "width:"+osd.offsetWidth+"px;"
-                    + "height:"+osd.offsetHeight+"px;"
-                    + "left:"+osd.offsetLeft+"px;"
-                    + "top:"+(osd.offsetTop-_this.scrollTop)+"px;"
-                    + "cursor:pointer;"
-                    ;
+    var _scrollTop = 0, 
+        _dir = 0; 
+    function _run(){
+        var _this = sections[current_index];
+        var st = _this.scrollTop,
+            ch = _this.clientHeight,
+            sh = _this.scrollHeight;
+
+        var osds = $(".outstanding", _this);
+        $("label",holder).forEach(function(label, i){
+            osd = osds[i];
+            label.style.cssText = "position:absolute;"
+                + "width:"+osd.offsetWidth+"px;"
+                + "height:"+osd.offsetHeight+"px;"
+                + "left:"+osd.offsetLeft+"px;"
+                + "top:"+(osd.offsetTop-_this.scrollTop)+"px;"
+                + "cursor:pointer;"
+                ;
+        });
+
+        if( _this.scrollTop !== _scrollTop){
+            _this.scrollTop = _scrollTop;
+            runs[current_index].forEach(function(r){
+                if( typeof r.run === "function" ){
+                    var per = _this.scrollTop == (sh-ch) ? 1 : _this.scrollTop / (sh-ch);
+                    r.filter = r.filter || function(per){return true};
+                    if( r.filter(per) ){
+                        r.run(per, _dir);
+                    }else{
+                        r.style.cssText = "";
+                    }
+                }
             });
         }
-        runs[current_index].forEach(function(r){
-            if( typeof r.run === "function" ){
-                var per = _this.scrollTop == (sh-ch) ? 1 : _this.scrollTop / (sh-ch);
-                r.filter = r.filter || function(per){return true};
-                if( r.filter(per) ){
-                    r.run(per, dir);
-                }else{
-                    r.style.cssText = "";
-                }
-            }
-        });
-    }
+        setTimeout(_run, 1000/60);
+    };
 
 })();
