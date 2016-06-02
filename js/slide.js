@@ -3,6 +3,7 @@
         $ = function(sel, holder){    
             return [].slice.call( (holder||document).querySelectorAll(sel) );
         };
+
     var 
         cover = $(".cover")[0],
         container = $("#container")[0],
@@ -119,6 +120,9 @@
 
 
     // 图片预加载
+    var conf = window.conf || {
+        ready: function () {}
+    };
     all_images = [].slice.call(conf.all_images||[]);
     var step = 20, runs = [], ready = function(){
         sections.forEach(function(s, i){
@@ -129,6 +133,7 @@
             s.insertBefore(div, s.firstChild);
             runs[i] = $(".run", s).filter(function(r){
                 if( typeof r.set === "function" ){
+                    var run = r.run || function () {};
                     var trace = [],
                         set = {
                             begin: function(d){d.per = d.per || 0;trace.push(d);return this;},
@@ -146,6 +151,7 @@
                         return per >= trace[0].per && per <= trace[trace.length-1].per;
                     };
                     r.run = function(per, dir){
+                        run.call(r, per, dir);
                         for (var i = 1; i < trace.length; i++) {
                             if( trace[i-1].per <= per && trace[i].per >= per ){
                                 var prev = trace[i-1], 
